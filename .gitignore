@@ -1,0 +1,6 @@
+node_modules/
+_deploy/
+temporary screenshots/
+.vercel
+*.log
+.DS_Store
