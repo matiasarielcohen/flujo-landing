@@ -4,3 +4,25 @@ temporary screenshots/
 .vercel
 *.log
 .DS_Store
+Thumbs.db
+
+# Local dev / Claude harness
+.claude/
+settings.local.json
+
+# Tailwind compilation artifacts (la página usa el CDN, no el compilado)
+tailwind.css
+tailwind.config.js
+src/
+package.json
+package-lock.json
+
+# Helpers locales de screenshot (no se sirven en producción)
+screenshot.mjs
+screenshot-mobile.mjs
+serve.mjs
+
+# Notas internas / artefactos
+CLAUDE.md
+FLUJO_CONTEXT.md
+original-1b407b73eada754f64c373d4506e67af.webp

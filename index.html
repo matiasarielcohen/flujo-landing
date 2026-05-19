@@ -4,6 +4,68 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Flujo — Automatizá tu negocio digital en 30 días</title>
+<meta name="description" content="Dejá de correr tu negocio por WhatsApp. En 30 días automatizamos tu operación y te devolvemos USD 2.000–8.000/mes. Auditoría gratuita de 30 minutos." />
+<meta name="keywords" content="automatización de negocios, automatizar WhatsApp, consultoría digital, automatización operaciones, IA para negocios, automatización ventas, Argentina, Flujo" />
+<meta name="author" content="Flujo" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<link rel="canonical" href="https://flujo.com.ar/" />
+<meta name="theme-color" content="#000000" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/brand_assets/Flujo%20Logo%20App.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/Flujo%20Logo%20App@4x.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/Flujo%20Logo%20App@4x.png" />
+<link rel="shortcut icon" href="/brand_assets/Flujo%20Logo%20App.svg" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Flujo" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:url" content="https://flujo.com.ar/" />
+<meta property="og:title" content="Flujo — Automatizá tu negocio digital en 30 días" />
+<meta property="og:description" content="Dejá de correr tu negocio por WhatsApp. En 30 días automatizamos tu operación y te devolvemos USD 2.000–8.000/mes. Auditoría gratuita de 30 minutos." />
+<meta property="og:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
+<meta property="og:image:alt" content="Flujo — Automatización de negocios" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Flujo — Automatizá tu negocio digital en 30 días" />
+<meta name="twitter:description" content="Dejá de correr tu negocio por WhatsApp. En 30 días automatizamos tu operación. Auditoría gratuita de 30 minutos." />
+<meta name="twitter:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
+
+<!-- Structured Data: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Flujo",
+  "url": "https://flujo.com.ar/",
+  "logo": "https://flujo.com.ar/brand_assets/Flujo%20Logo%20Principal@4x.png",
+  "description": "Consultoría de automatización: en 30 días automatizamos la operación de tu negocio digital.",
+  "areaServed": "AR",
+  "inLanguage": "es-AR"
+}
+</script>
+<!-- Structured Data: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Flujo",
+  "url": "https://flujo.com.ar/",
+  "inLanguage": "es-AR"
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M924S8XC');</script>
+<!-- End Google Tag Manager -->
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -670,9 +732,125 @@
     #garantia h2{ font-size: 26px !important; }
   }
 
+  /* ╔══════════════════════════════════════════════════════════╗
+     ║  MOBILE V2 — Ajustes finos solo en ≤768px                ║
+     ║  Desktop NO se toca. Para revertir: eliminar este bloque.║
+     ╚══════════════════════════════════════════════════════════╝ */
+  @media (max-width: 768px){
+
+    /* ── Hero: levemente más chico y más espacio logo → contenido ── */
+    .hero-panel{
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 84px 18px 28px !important;
+    }
+    .hero-play{ display: none !important; }
+    .hero-panel h1{
+      font-size: clamp(36px, 11vw, 56px) !important;
+      line-height: 1.04 !important;
+    }
+    .hero-panel p.text-white\/60{
+      font-size: 15px !important;
+      margin-top: 18px !important;
+      line-height: 1.55;
+    }
+    .hero-panel .flex.items-center.gap-3.mt-9{
+      flex-wrap: wrap;
+    }
+
+    /* ── Pain cards: número al lado del título, párrafo abajo ── */
+    .pain-card{
+      display: grid !important;
+      grid-template-columns: auto 1fr;
+      column-gap: 14px;
+      align-items: center;
+      padding: 22px 20px !important;
+    }
+    .pain-card .num-badge{
+      grid-column: 1; grid-row: 1;
+      margin-bottom: 0 !important;
+      font-size: 32px !important;
+      align-self: center;
+    }
+    .pain-card h3{
+      grid-column: 2; grid-row: 1;
+      margin-bottom: 0 !important;
+      font-size: 16px !important;
+      line-height: 1.25 !important;
+      align-self: center;
+    }
+    .pain-card p{
+      grid-column: 1 / -1; grid-row: 2;
+      margin-top: 10px !important;
+      font-size: 13px !important;
+    }
+
+    /* ── Desactivar hover sticky en touch (evita que cards/buttons queden
+       desplazados después de un tap) ── */
+    .pain-card:hover,
+    .btn-dark:hover,
+    .btn-white:hover{
+      transform: none !important;
+    }
+
+    /* ── Timeline (Cronograma): stack vertical mejor ── */
+    .timeline-step{
+      grid-template-columns: 56px 1fr !important;
+      gap: 14px !important;
+      padding: 20px 0 !important;
+    }
+    .step-num{
+      font-size: 36px !important;
+    }
+
+    /* ── Garantía: tipografía ── */
+    #garantia h2{
+      font-size: 28px !important;
+      line-height: 1.1 !important;
+    }
+    #garantia .text-white\/65{
+      font-size: 14px !important;
+    }
+
+    /* ── Section padding + gap entre secciones ── */
+    #dolor .panel, #transformacion .panel, #sistema .panel,
+    #proceso .panel, #garantia .panel, #faq .panel,
+    #cta-final .panel, footer .panel{
+      padding: 32px 18px !important;
+    }
+    body > .w-full.flex.flex-col.items-center{
+      gap: 16px !important;
+    }
+
+    /* ── FAQ: jerarquía ── */
+    .faq-q .text-white{
+      font-size: 15px !important;
+      line-height: 1.35 !important;
+    }
+    .faq-a{
+      font-size: 13.5px !important;
+      line-height: 1.6 !important;
+    }
+
+    /* ── Calendar embed: altura inicial ajustada al date-picker.
+       El listener JS reescala si LeadConnector reporta otra altura.
+       Margin negativo da más ancho al iframe para evitar cortes en el borde derecho. ── */
+    .cal-embed iframe{
+      height: 680px !important;
+      min-height: 680px !important;
+    }
+    .cal-embed{
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
 </style>
 </head>
 <body class="page-bg min-h-screen">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M924S8XC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- ============== SCROLL PROGRESS BAR (reemplaza el header) ============== -->
 <div id="scroll-progress-track" aria-hidden="true">
@@ -680,7 +858,9 @@
 </div>
 
 <!-- ============== CONTENEDOR EXTERNO ============== -->
-<div class="w-full flex flex-col items-center px-6 pt-1 pb-6 gap-6">
+<div class="w-full flex flex-col items-center px-6 pt-1 pb-0 gap-6">
+
+  <main class="w-full flex flex-col items-center gap-6">
 
   <!-- ============== HERO ============== -->
   <div class="outer-frame w-full max-w-[1380px] pt-3 px-5 pb-5 relative">
@@ -696,7 +876,7 @@
 
       <!-- BRAND (logo) adentro del hero, esquina superior izquierda -->
       <a href="#" class="absolute top-7 left-12 inline-flex items-center group z-30 transition-transform duration-200 hover:scale-[1.03]" aria-label="Flujo — Inicio">
-        <img src="brand_assets/Flujo Logo Principal.svg" alt="Flujo" class="h-14 w-auto block select-none" draggable="false"/>
+        <img src="brand_assets/Flujo Logo Principal.svg" alt="Flujo — Automatización de negocios digitales" width="160" height="56" class="h-14 w-auto block select-none" draggable="false"/>
       </a>
 
       <!-- Connector curves -->
@@ -781,7 +961,7 @@
       <!-- CENTER -->
       <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
         <div class="float-y flex flex-col items-center mb-7">
-          <a href="#cta-final" class="play-btn play-btn-link mb-3" aria-label="Reservá tu auditoría gratuita">
+          <a href="#cta-final" class="play-btn play-btn-link mb-3 hero-play" aria-label="Reservá tu auditoría gratuita">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7L8 5z"/></svg>
           </a>
           <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/40 border border-white/10 backdrop-blur-md fade-in d1">
@@ -816,7 +996,7 @@
     <div class="panel p-12 lg:p-16 relative overflow-hidden">
       <div class="grain"></div>
       <div class="mb-10">
-        <div class="section-eyebrow mb-3">El espejo · 02</div>
+        <div class="section-eyebrow mb-3">El problema · 02</div>
         <h2 class="section-title max-w-[820px] mb-5">
           Estás corriendo tu negocio <span class="dim">en automático.</span><br/>
           <span class="font-serif italic">Pero vos sos el automático.</span>
@@ -1093,45 +1273,55 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mt-4">
-        <div class="panel-soft p-5">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-serif text-[32px] text-white/40 leading-none">01</span>
-            <span class="text-white/45 text-[10px] uppercase tracking-[0.15em]">D 1–3</span>
+        <div class="panel-soft p-5 flex items-start gap-4">
+          <span class="num-badge" style="font-size:32px;line-height:1;color:rgba(255,255,255,0.4);">01</span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-white text-[17px] font-medium leading-snug">Auditoría de operaciones</h3>
+              <span class="text-white/45 text-[10px] uppercase tracking-[0.15em] shrink-0 mt-1">D 1–3</span>
+            </div>
+            <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Mapeamos flujos manuales. 3 automatizaciones prioritarias.</p>
           </div>
-          <h3 class="text-white text-[15px] font-medium leading-snug">Auditoría de operaciones</h3>
-          <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Mapeamos flujos manuales. 3 automatizaciones prioritarias.</p>
         </div>
-        <div class="panel-soft p-5">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-serif text-[32px] text-white/40 leading-none">02</span>
-            <span class="text-white/45 text-[10px] uppercase tracking-[0.15em]">D 3–5</span>
+        <div class="panel-soft p-5 flex items-start gap-4">
+          <span class="num-badge" style="font-size:32px;line-height:1;color:rgba(255,255,255,0.4);">02</span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-white text-[17px] font-medium leading-snug">Arquitectura y diseño</h3>
+              <span class="text-white/45 text-[10px] uppercase tracking-[0.15em] shrink-0 mt-1">D 3–5</span>
+            </div>
+            <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Diagrama completo. Vos aprobás antes de construir.</p>
           </div>
-          <h3 class="text-white text-[15px] font-medium leading-snug">Arquitectura y diseño</h3>
-          <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Diagrama completo. Vos aprobás antes de construir.</p>
         </div>
-        <div class="panel-soft p-5">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-serif text-[32px] text-white/40 leading-none">03</span>
-            <span class="text-white/45 text-[10px] uppercase tracking-[0.15em]">D 5–12</span>
+        <div class="panel-soft p-5 flex items-start gap-4">
+          <span class="num-badge" style="font-size:32px;line-height:1;color:rgba(255,255,255,0.4);">03</span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-white text-[17px] font-medium leading-snug">Construcción y conexión</h3>
+              <span class="text-white/45 text-[10px] uppercase tracking-[0.15em] shrink-0 mt-1">D 5–12</span>
+            </div>
+            <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Automatizaciones, plataformas conectadas, alertas configuradas.</p>
           </div>
-          <h3 class="text-white text-[15px] font-medium leading-snug">Construcción y conexión</h3>
-          <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Automatizaciones, plataformas conectadas, alertas configuradas.</p>
         </div>
-        <div class="panel-soft p-5">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-serif text-[32px] text-white/40 leading-none">04</span>
-            <span class="text-white/45 text-[10px] uppercase tracking-[0.15em]">D 12–14</span>
+        <div class="panel-soft p-5 flex items-start gap-4">
+          <span class="num-badge" style="font-size:32px;line-height:1;color:rgba(255,255,255,0.4);">04</span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-white text-[17px] font-medium leading-snug">Test y lanzamiento</h3>
+              <span class="text-white/45 text-[10px] uppercase tracking-[0.15em] shrink-0 mt-1">D 12–14</span>
+            </div>
+            <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Pruebas end-to-end. Capacitación de 30 min. Documentación entregada.</p>
           </div>
-          <h3 class="text-white text-[15px] font-medium leading-snug">Test y lanzamiento</h3>
-          <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Pruebas end-to-end. Capacitación de 30 min. Documentación entregada.</p>
         </div>
-        <div class="panel-soft p-5">
-          <div class="flex items-center justify-between mb-3">
-            <span class="font-serif text-[32px] text-white/40 leading-none">05</span>
-            <span class="text-white/45 text-[10px] uppercase tracking-[0.15em]">D 14–30</span>
+        <div class="panel-soft p-5 flex items-start gap-4">
+          <span class="num-badge" style="font-size:32px;line-height:1;color:rgba(255,255,255,0.4);">05</span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-white text-[17px] font-medium leading-snug">Monitoreo y soporte</h3>
+              <span class="text-white/45 text-[10px] uppercase tracking-[0.15em] shrink-0 mt-1">D 14–30</span>
+            </div>
+            <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Soporte 24h. Llamada final al día 30 para decidir próximos pasos.</p>
           </div>
-          <h3 class="text-white text-[15px] font-medium leading-snug">Monitoreo y soporte</h3>
-          <p class="text-white/45 text-[12px] mt-2 leading-relaxed">Soporte 24h. Llamada final al día 30 para decidir próximos pasos.</p>
         </div>
       </div>
     </div>
@@ -1272,13 +1462,15 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ============== FOOTER ============== -->
   <footer class="w-full max-w-[1380px]">
     <div class="panel p-10 lg:p-12">
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-end">
         <div>
           <div class="mb-4">
-            <img src="brand_assets/Flujo Logo Principal.svg" alt="Flujo" class="h-12 w-auto block select-none" draggable="false"/>
+            <img src="brand_assets/Flujo Logo Principal.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="48" class="h-12 w-auto block select-none" draggable="false"/>
           </div>
           <p class="text-white/50 text-[14px] max-w-[420px] leading-relaxed">
             Automatizamos tu operación digital para que vos vuelvas a hacer lo único que no se puede automatizar: tu contenido y tus clientes.
@@ -1306,6 +1498,50 @@
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  /* ============================================================
+     Auto-resize iframe del calendario (LeadConnector / GoHighLevel) —
+     escucha postMessage en todos los formatos que la app del calendario
+     manda (iFrameSizer + highlevel.setHeight) y ajusta la altura del
+     iframe para que se vea completo sin hueco negro debajo.
+     ============================================================ */
+  (function(){
+    function parseHeight(d){
+      // Formato 1: "[iFrameSizer]ID:HEIGHT:WIDTH:event"
+      if (typeof d === 'string' && d.indexOf('[iFrameSizer]') === 0){
+        const parts = d.split(':');
+        if (parts.length >= 2){
+          const h = parseInt(parts[1], 10);
+          if (h > 0) return h;
+        }
+      }
+      // Formato 2: ["highlevel.setHeight", { height, id }]
+      if (Array.isArray(d) && d.length >= 2 && d[0] === 'highlevel.setHeight'){
+        const p = d[1];
+        if (p && typeof p.height === 'number') return p.height;
+      }
+      // Formato 3: { height, ... }
+      if (d && typeof d === 'object' && !Array.isArray(d)){
+        if (typeof d.height === 'number') return d.height;
+        if (d.size && typeof d.size.height === 'number') return d.size.height;
+        if (d.payload && typeof d.payload.height === 'number') return d.payload.height;
+      }
+      return null;
+    }
+    window.addEventListener('message', function(e){
+      if (!e) return;
+      const h = parseHeight(e.data);
+      if (!h || h < 200 || h > 3000) return;
+      const iframe = document.querySelector('.cal-embed iframe');
+      if (!iframe) return;
+      iframe.style.setProperty('height', h + 'px', 'important');
+      iframe.style.setProperty('min-height', h + 'px', 'important');
+      const wrap = iframe.parentElement;
+      if (wrap && wrap.classList.contains('cal-embed')){
+        wrap.style.minHeight = h + 'px';
+      }
+    });
+  })();
 
   /* ============================================================
      Scroll Progress Bar — adaptación vanilla del componente React
@@ -1366,7 +1602,7 @@
   (function(){
     // 1) Section-level reveal sutil (todas las secciones below hero)
     document.querySelectorAll(
-      'body > div > section.max-w-\\[1380px\\], body > div > footer.max-w-\\[1380px\\]'
+      'body > div > section.max-w-\\[1380px\\], body > div > footer.max-w-\\[1380px\\], body > div > main > section.max-w-\\[1380px\\]'
     ).forEach(el => el.classList.add('reveal'));
 
     // Helper: aplica variante a un container y setea props por hijo
