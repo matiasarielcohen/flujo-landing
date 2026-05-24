@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Flujo — Automatizá tu negocio digital en 30 días</title>
-<meta name="description" content="Dejá de correr tu negocio por WhatsApp. En 30 días automatizamos tu operación y te devolvemos USD 2.000–8.000/mes. Auditoría gratuita de 30 minutos." />
+<meta name="description" content="Dejá de gestionar tu negocio por WhatsApp. En 30 días automatizamos tu operación y te devolvemos USD 2.000–8.000/mes. Auditoría gratuita de 30 minutos." />
 <meta name="keywords" content="automatización de negocios, automatizar WhatsApp, consultoría digital, automatización operaciones, IA para negocios, automatización ventas, Argentina, Flujo" />
 <meta name="author" content="Flujo" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -24,14 +24,14 @@
 <meta property="og:locale" content="es_AR" />
 <meta property="og:url" content="https://flujo.com.ar/" />
 <meta property="og:title" content="Flujo — Automatizá tu negocio digital en 30 días" />
-<meta property="og:description" content="Dejá de correr tu negocio por WhatsApp. En 30 días automatizamos tu operación y te devolvemos USD 2.000–8.000/mes. Auditoría gratuita de 30 minutos." />
+<meta property="og:description" content="Dejá de gestionar tu negocio por WhatsApp. En 30 días automatizamos tu operación y te devolvemos USD 2.000–8.000/mes. Auditoría gratuita de 30 minutos." />
 <meta property="og:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
 <meta property="og:image:alt" content="Flujo — Automatización de negocios" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Flujo — Automatizá tu negocio digital en 30 días" />
-<meta name="twitter:description" content="Dejá de correr tu negocio por WhatsApp. En 30 días automatizamos tu operación. Auditoría gratuita de 30 minutos." />
+<meta name="twitter:description" content="Dejá de gestionar tu negocio por WhatsApp. En 30 días automatizamos tu operación. Auditoría gratuita de 30 minutos." />
 <meta name="twitter:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
 
 <!-- Structured Data: Organization -->
@@ -262,11 +262,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .step-num{font-family:'Instrument Serif',serif;font-size:48px;color:rgba(255,255,255,0.45);line-height:1;}
   .faq-item{border-top:1px solid rgba(255,255,255,0.07);}
   .faq-item:last-child{border-bottom:1px solid rgba(255,255,255,0.07);}
-  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:24px 0;cursor:pointer;list-style:none;}
-  .faq-q::-webkit-details-marker{display:none;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;cursor:pointer;width:100%;background:none;border:0;text-align:left;color:inherit;font:inherit;}
+  .faq-a-wrap{
+    display:grid;
+    grid-template-rows:0fr;
+    opacity:0;
+    transition:grid-template-rows .42s cubic-bezier(0.16,1,0.3,1), opacity .32s ease;
+  }
+  .faq-a-wrap > .faq-a-inner{
+    overflow:hidden;
+    min-height:0;
+  }
   .faq-a{padding:0 0 24px 0;color:rgba(255,255,255,0.6);max-width:700px;line-height:1.7;}
-  details[open] .faq-icon{transform:rotate(45deg);}
-  .faq-icon{transition:transform .25s;}
+  .faq-item.is-open .faq-a-wrap{
+    grid-template-rows:1fr;
+    opacity:1;
+  }
+  .faq-icon{transition:transform .35s cubic-bezier(0.16,1,0.3,1);}
+  .faq-item.is-open .faq-icon{transform:rotate(45deg);}
   .marquee{display:flex;gap:80px;animation:marquee 35s linear infinite;width:max-content;}
   @keyframes marquee {
     from{transform:translateX(0);}
@@ -971,7 +984,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <h1 class="font-display font-semibold text-white fade-in d2 max-w-[1100px] px-4" style="font-size:clamp(38px,5.6vw,78px);line-height:1.02;">
-          Dejá de correr tu negocio<br class="hidden md:block"/> <span class="shimmer-word" style="opacity:.85;">por WhatsApp</span>
+          Dejá de gestionar tu negocio<br class="hidden md:block"/> <span class="shimmer-word" style="opacity:.85;">por WhatsApp</span>
         </h1>
 
         <p class="text-white/60 text-[16px] mt-6 max-w-[720px] leading-relaxed fade-in d3">
@@ -1011,7 +1024,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="pain-card">
           <div class="num-badge mb-5">01</div>
           <h3 class="text-white text-[19px] font-medium mb-3">15 hs/semana que no te paga nadie</h3>
-          <p class="text-white/55 text-[14px] leading-relaxed">Confirmás pagos por WhatsApp, mandás accesos a mano, cargás inscripciones. Cada venta dispara una cadena manual.</p>
+          <p class="text-white/55 text-[14px] leading-relaxed">Contestás consultas y confirmás pagos por WhatsApp, mandás accesos a mano, cargás inscripciones. Cada venta dispara una cadena manual.</p>
         </div>
 
         <div class="pain-card">
@@ -1068,28 +1081,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="ab-row">
-          <div class="ab-cell ab-cell-a">Ventas confirmadas por WhatsApp a mano</div>
-          <div class="ab-cell ab-cell-b">El pago dispara accesos automáticos en menos de 60 segundos</div>
+          <div class="ab-cell ab-cell-a">Consultas contestadas a mano</div>
+          <div class="ab-cell ab-cell-b">Chatbot 24/7: responde, califica y agenda</div>
         </div>
         <div class="ab-row">
-          <div class="ab-cell ab-cell-a">Accesos al curso enviados uno por uno</div>
-          <div class="ab-cell ab-cell-b">La secuencia de bienvenida corre sola</div>
+          <div class="ab-cell ab-cell-a">Ventas confirmadas por WhatsApp</div>
+          <div class="ab-cell ab-cell-b">Pago → acceso automático en 60 segundos</div>
         </div>
         <div class="ab-row">
-          <div class="ab-cell ab-cell-a">Progreso del alumno: desconocido</div>
-          <div class="ab-cell ab-cell-b">Dashboard en vivo: quién está activo, quién en riesgo</div>
+          <div class="ab-cell ab-cell-a">Cada lanzamiento = semana apagando incendios</div>
+          <div class="ab-cell ab-cell-b">Lanzamientos arrancan con un solo trigger</div>
         </div>
         <div class="ab-row">
-          <div class="ab-cell ab-cell-a">Cada lanzamiento = una semana apagando incendios</div>
-          <div class="ab-cell ab-cell-b">Los lanzamientos arrancan con un solo trigger</div>
+          <div class="ab-cell ab-cell-a">Carritos y pagos fallidos sin seguimiento</div>
+          <div class="ab-cell ab-cell-b">Recuperación automática de ventas perdidas</div>
         </div>
         <div class="ab-row">
-          <div class="ab-cell ab-cell-a">Ingresos repartidos en 4 lugares distintos</div>
-          <div class="ab-cell ab-cell-b">Un solo dashboard en vivo con todo</div>
+          <div class="ab-cell ab-cell-a">Ingresos, clientes y datos en 4 lugares distintos</div>
+          <div class="ab-cell ab-cell-b">Todo en un solo dashboard en vivo</div>
         </div>
         <div class="ab-row">
-          <div class="ab-cell ab-cell-a">10 a 20 horas semanales en tareas administrativas</div>
-          <div class="ab-cell ab-cell-b">10 a 15 horas semanales liberadas para crecer</div>
+          <div class="ab-cell ab-cell-a">10 a 20 hs/semana en tareas administrativas</div>
+          <div class="ab-cell ab-cell-b">10 a 15 hs/semana liberadas para crecer</div>
         </div>
       </div>
 
@@ -1128,15 +1141,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="panel-soft p-5 flex items-start gap-4">
               <div class="num-badge" style="font-size:26px;line-height:1;color:rgba(255,255,255,0.4);">01</div>
               <div>
-                <h3 class="text-white text-[17px] font-medium">Automatización de flujos de trabajo</h3>
-                <p class="text-white/50 text-[13px] mt-1">Pago → acceso + bienvenida + CRM + alerta. En segundos.</p>
+                <h3 class="text-white text-[17px] font-medium">Chatbots 24/7 en Instagram y WhatsApp</h3>
+                <p class="text-white/50 text-[13px] mt-1">Responden consultas, califican leads y agendan reuniones. Sin que vos contestes un solo mensaje.</p>
               </div>
             </div>
             <div class="panel-soft p-5 flex items-start gap-4">
               <div class="num-badge" style="font-size:26px;line-height:1;color:rgba(255,255,255,0.4);">02</div>
               <div>
-                <h3 class="text-white text-[17px] font-medium">CRM y gestión de datos</h3>
-                <p class="text-white/50 text-[13px] mt-1">Una sola fuente de verdad. Estado, progreso, flags de churn automáticos.</p>
+                <h3 class="text-white text-[17px] font-medium">Automatización de flujos de trabajo</h3>
+                <p class="text-white/50 text-[13px] mt-1">Pago → acceso + bienvenida + CRM + alerta. En segundos.</p>
               </div>
             </div>
             <div class="panel-soft p-5 flex items-start gap-4">
@@ -1191,7 +1204,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <span class="text-white text-[12px]">USD 297</span>
                 </div>
                 <div class="flex items-center justify-between mt-0.5">
-                  <span class="text-white/40 text-[10px]">curso · cohorte 04</span>
+                  <span class="text-white/40 text-[10px]">Plan Pro · pago único</span>
                   <span class="text-white/40 text-[10px]">hace 12s</span>
                 </div>
               </div>
@@ -1360,7 +1373,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </h2>
 
         <p class="text-white/65 text-[17px] mt-7 max-w-[760px] mx-auto leading-relaxed">
-          Construimos el sistema. Lo probamos en vivo con transacciones reales. Lo lanzamos con vos. Y si en 30 días tu equipo no ahorra al menos 10 horas por semana, reconstruimos sin costo — o te devolvemos el 50% del fee. Sin preguntas.
+          Construimos el sistema. Lo probamos en vivo con transacciones reales. Lo lanzamos con vos. Y si en 30 días tu equipo no ahorra al menos 10 horas por semana, reconstruimos sin costo — o te devolvemos el 100% del fee. Sin preguntas.
         </p>
 
         <!-- Cláusulas al pie -->
@@ -1371,7 +1384,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="flex items-start gap-2 text-left">
             <span class="text-white">✓</span>
-            <span>50% del fee devuelto — sin preguntas, sin condiciones</span>
+            <span>100% del fee devuelto — sin preguntas, sin condiciones</span>
           </div>
         </div>
       </div>
@@ -1391,38 +1404,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="section-eyebrow mb-3">Preguntas · 07</div>
       <h2 class="section-title max-w-[820px] mb-12">Lo que <span class="dim">siempre</span> <span class="font-serif italic">nos preguntan</span> antes de empezar.</h2>
 
-      <div class="max-w-[920px]">
-        <details class="faq-item" open>
-          <summary class="faq-q">
+      <div class="max-w-[920px]" data-faq-group>
+        <div class="faq-item is-open" data-faq>
+          <button type="button" class="faq-q">
             <span class="text-white text-[20px]">¿Necesito cambiar las plataformas que ya uso?</span>
             <span class="faq-icon text-white/60"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          </summary>
-          <div class="faq-a">No. Trabajamos sobre las herramientas que ya tenés. La automatización se construye encima, no las reemplaza.</div>
-        </details>
+          </button>
+          <div class="faq-a-wrap"><div class="faq-a-inner"><div class="faq-a">No. Trabajamos sobre las herramientas que ya tenés. La automatización se construye encima, no las reemplaza.</div></div></div>
+        </div>
 
-        <details class="faq-item">
-          <summary class="faq-q">
+        <div class="faq-item" data-faq>
+          <button type="button" class="faq-q">
             <span class="text-white text-[20px]">¿Qué pasa si mi negocio es muy chico todavía?</span>
             <span class="faq-icon text-white/60"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          </summary>
-          <div class="faq-a">La auditoría gratuita te dice si Flujo es para vos hoy o todavía no. Si no es el momento, te lo decimos.</div>
-        </details>
+          </button>
+          <div class="faq-a-wrap"><div class="faq-a-inner"><div class="faq-a">La auditoría gratuita te dice si Flujo es para vos hoy o todavía no. Si no es el momento, te lo decimos.</div></div></div>
+        </div>
 
-        <details class="faq-item">
-          <summary class="faq-q">
+        <div class="faq-item" data-faq>
+          <button type="button" class="faq-q">
             <span class="text-white text-[20px]">¿Qué pasa después de los 30 días?</span>
             <span class="faq-icon text-white/60"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          </summary>
-          <div class="faq-a">No te dejamos colgado. Hacemos un seguimiento continuo para verificar que cada automatización siga corriendo sin fricción, y estás cubierto 24/7 ante cualquier error, problema o bug. Tu operación sigue andando — vos te dedicás a crecer.</div>
-        </details>
+          </button>
+          <div class="faq-a-wrap"><div class="faq-a-inner"><div class="faq-a">No te dejamos colgado. Hacemos un seguimiento continuo para verificar que cada automatización siga corriendo sin fricción, y estás cubierto 24/7 ante cualquier error, problema o bug. Tu operación sigue andando — vos te dedicás a crecer.</div></div></div>
+        </div>
 
-        <details class="faq-item">
-          <summary class="faq-q">
+        <div class="faq-item" data-faq>
+          <button type="button" class="faq-q">
             <span class="text-white text-[20px]">¿Y si no me gusta el resultado?</span>
             <span class="faq-icon text-white/60"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          </summary>
-          <div class="faq-a">Te lo reconstruimos sin costo, o te devolvemos el 50% del fee. La garantía aplica a los 30 días post-lanzamiento.</div>
-        </details>
+          </button>
+          <div class="faq-a-wrap"><div class="faq-a-inner"><div class="faq-a">Te lo reconstruimos sin costo, o te devolvemos el 100% del fee. La garantía aplica a los 30 días post-lanzamiento.</div></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1498,6 +1511,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  /* FAQ accordion — solo una abierta + animación suave */
+  (function(){
+    const items = document.querySelectorAll('[data-faq]');
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-q');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const wasOpen = item.classList.contains('is-open');
+        items.forEach(o => o.classList.remove('is-open'));
+        if (!wasOpen) item.classList.add('is-open');
+      });
+    });
+  })();
 
   /* ============================================================
      Auto-resize iframe del calendario (LeadConnector / GoHighLevel) —
