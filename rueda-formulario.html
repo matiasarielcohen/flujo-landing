@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flujo — Recibí tu diagnóstico</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Mismo pedido que index.html: Instrument Serif SIN el eje itálico. -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#171817;
+    --white:#ffffff;
+    /* valores elegidos para pasar contraste AA (4.5:1) sobre #171817:
+       con --faint en 0.34 las etiquetas de los campos quedaban en ~3:1 */
+    --dim:rgba(255,255,255,0.62);
+    --faint:rgba(255,255,255,0.52);
+    --line:rgba(255,255,255,0.13);
+    --field:#101110;
+    --err:#e0968c;
+    --serif:'Instrument Serif', serif;   /* misma pila que index.html */
+    --sans:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  *{box-sizing:border-box;}
+  /* Los controles de formulario no heredan la tipografía del body */
+  button,input,select,textarea{font-family:inherit;}
+  html,body{margin:0;background:var(--bg);}
+  body{
+    font-family:var(--sans);color:var(--white);
+    -webkit-font-smoothing:antialiased;line-height:1.5;
+  }
+  .wrap{max-width:620px;margin:0 auto;padding:34px 28px 32px;}
+
+  .eyebrow{text-transform:uppercase;letter-spacing:0.18em;font-size:11px;color:var(--faint);margin:0 0 12px;}
+
+  /* Sistema de títulos Flujo (mismos valores que .section-title en index.html):
+     base = Inter 600 blanco · .t-dim = gris · .t-acc = Instrument Serif itálica.
+     .t-acc no fija peso a propósito: hereda el 600 del título y el navegador
+     engorda la serif de forma sintética, igual que en el resto del sitio. */
+  h1{font-family:var(--sans);font-weight:600;color:var(--white);
+     letter-spacing:-0.035em;line-height:1.05;font-size:clamp(26px,4.4vw,36px);margin:0 0 10px;}
+  .t-dim{color:var(--dim);}
+  .t-acc{font-family:var(--serif);font-style:italic;letter-spacing:-0.01em;color:var(--white);}
+
+  .sub{font-size:15px;color:var(--dim);margin:0 0 26px;max-width:52ch;line-height:1.6;}
+
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:8px;min-width:0;}
+  .field.full{grid-column:1 / -1;}
+  .field label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);}
+  .field input{
+    font-family:var(--sans);font-size:15px;color:var(--white);background:var(--field);
+    border:1px solid var(--line);border-radius:12px;padding:14px 15px;width:100%;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .field input::placeholder{color:rgba(255,255,255,0.26);}
+  .field input:hover{border-color:rgba(255,255,255,0.22);}
+  .field input:focus{outline:none;border-color:var(--white);background:#0b0c0b;}
+  .field input[aria-invalid="true"]{border-color:var(--err);}
+  .field .err{font-size:12px;color:var(--err);min-height:15px;line-height:1.25;}
+
+  .submit{
+    margin-top:22px;width:100%;font-family:var(--sans);font-size:16px;font-weight:600;
+    color:var(--bg);background:var(--white);border:none;border-radius:14px;padding:17px;cursor:pointer;
+    transition:opacity .2s ease, transform .2s var(--ease);
+  }
+  .submit:hover{opacity:.9;transform:translateY(-1px);}
+  .submit:active{transform:translateY(0);}
+  .submit:focus-visible{outline:2px solid var(--white);outline-offset:3px;}
+  .submit[disabled]{opacity:.55;cursor:progress;transform:none;}
+
+  .note{font-size:12px;color:var(--faint);margin:16px 0 0;line-height:1.55;}
+
+  /* Estado de éxito (cuando se usa suelto, fuera de la rueda) */
+  .done{display:none;text-align:left;}
+  .done.on{display:block;animation:softIn .45s var(--ease) both;}
+  .form-box.off{display:none;}
+  .done h2{font-family:var(--sans);font-weight:600;letter-spacing:-0.035em;line-height:1.08;
+    font-size:clamp(24px,4vw,32px);margin:0 0 10px;color:var(--white);}
+  .done p{font-size:15px;color:var(--dim);margin:0 0 22px;max-width:50ch;line-height:1.6;}
+  .done .cta{display:inline-block;font-size:15px;font-weight:600;text-decoration:none;
+    color:var(--bg);background:var(--white);border-radius:12px;padding:14px 24px;
+    transition:opacity .2s ease, transform .2s var(--ease);}
+  .done .cta:hover{opacity:.9;transform:translateY(-1px);}
+  .done .cta:focus-visible{outline:2px solid var(--white);outline-offset:3px;}
+
+  @keyframes softIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+  @media (max-width:520px){
+    .wrap{padding:26px 18px 26px;}
+    .fields{grid-template-columns:1fr;gap:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="form-box" id="formBox">
+    <!-- Con ?bare=1 se ocultan: el título lo pone el modal que lo contiene -->
+    <div id="formHead">
+      <p class="eyebrow">Tu diagnóstico está listo</p>
+      <h1>¿A quién le <span class="t-dim">mandamos el diagnóstico?</span><br><span class="t-acc">Dejanos tus datos.</span></h1>
+    </div>
+    <p class="sub">Te abrimos el diagnóstico completo acá mismo. Con tus datos te mandamos además las 2 automatizaciones que más te convienen según tu rueda.</p>
+
+    <form id="leadForm" novalidate>
+      <div class="fields">
+        <!-- aria-describedby + aria-live: sin esto el lector de pantalla
+             nunca anunciaba el error del campo. -->
+        <div class="field">
+          <label for="fNombre">Nombre</label>
+          <input id="fNombre" name="nombre" type="text" autocomplete="given-name" placeholder="Tu nombre"
+                 required aria-required="true" aria-describedby="eNombre" />
+          <span class="err" id="eNombre" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="fApellido">Apellido</label>
+          <input id="fApellido" name="apellido" type="text" autocomplete="family-name" placeholder="Tu apellido"
+                 required aria-required="true" aria-describedby="eApellido" />
+          <span class="err" id="eApellido" aria-live="polite"></span>
+        </div>
+        <div class="field full">
+          <label for="fEmail">Email</label>
+          <input id="fEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="tu@email.com"
+                 required aria-required="true" aria-describedby="eEmail" />
+          <span class="err" id="eEmail" aria-live="polite"></span>
+        </div>
+        <div class="field full">
+          <label for="fTel">Número de WhatsApp</label>
+          <input id="fTel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="+54 9 11 ..."
+                 required aria-required="true" aria-describedby="eTel" />
+          <span class="err" id="eTel" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <button class="submit" type="submit" id="submitBtn">Ver mi diagnóstico →</button>
+      <p class="note">Usamos tus datos solo para mandarte el diagnóstico y contactarte. No los compartimos con nadie.</p>
+    </form>
+  </div>
+
+  <div class="done" id="doneBox" role="status" aria-live="polite">
+    <p class="eyebrow">Listo</p>
+    <h2>Recibimos tus datos. <span class="t-acc">Te escribimos en breve.</span></h2>
+    <p id="doneMsg">Ya podés reservar tu auditoría gratuita de 30 minutos y llevarte los 3 números de tu operación.</p>
+    <a class="cta" id="doneCta" href="https://api.leadconnectorhq.com/widget/booking/h17RRgAL8FEfAfenOwFW" target="_blank" rel="noopener">Reservar mi auditoría →</a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ======================= CONFIGURACIÓN =======================
+     Editá SOLO este bloque.
+     ============================================================= */
+  var CONFIG = {
+    // Webhook / Inbound Trigger de GHL al que se manda el lead.
+    //
+    // • Si embebés este form DENTRO de rueda-operaciones.html:
+    //   dejalo VACÍO. La rueda ya manda el lead e incluye los puntajes.
+    //   (Si lo llenás acá también, el lead se manda dos veces.)
+    //
+    // • Si usás este form SUELTO (en GHL, en una landing, donde sea):
+    //   pegá acá la URL del webhook.
+    webhook: "",
+
+    // Link del calendario para el estado de éxito (uso suelto).
+    booking: "https://api.leadconnectorhq.com/widget/booking/h17RRgAL8FEfAfenOwFW",
+
+    // Si querés que al enviar redirija en vez de mostrar el "gracias",
+    // poné acá la URL. Vacío = muestra el estado de éxito.
+    redirectUrl: ""
+  };
+  /* ============================================================= */
+
+  var $ = function(id){ return document.getElementById(id); };
+  var form = $("leadForm");
+
+  // ?bare=1 → sin título ni padding de más: lo usa el modal de la rueda,
+  // que ya pone su propio encabezado.
+  if(/[?&]bare=1(&|$)/.test(window.location.search)){
+    $("formHead").style.display = "none";
+    document.querySelector(".wrap").style.padding = "0";
+  }
+
+  // ¿Estamos embebidos dentro de otra página (la rueda)?
+  var embedded = (function(){ try { return window.parent && window.parent !== window; } catch(e){ return false; } })();
+
+  // ---- Reportar altura al contenedor para que el iframe se ajuste solo ----
+  function reportHeight(){
+    if(!embedded) return;
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    try{ window.parent.postMessage({ type:"flujo-form-height", height:h }, "*"); }catch(e){}
+  }
+  window.addEventListener("load", reportHeight);
+  window.addEventListener("resize", reportHeight);
+  if(window.ResizeObserver){ new ResizeObserver(reportHeight).observe(document.documentElement); }
+
+  // ---- Validación ----
+  function setErr(inputId, errId, msg){
+    var i = $(inputId);
+    $(errId).textContent = msg || "";
+    if(msg) i.setAttribute("aria-invalid","true"); else i.removeAttribute("aria-invalid");
+    return !msg;
+  }
+  function validEmail(v){
+    // suficiente para un formulario: algo@algo.algo, sin espacios
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  }
+
+  function collect(){
+    return {
+      nombre:   $("fNombre").value.trim(),
+      apellido: $("fApellido").value.trim(),
+      email:    $("fEmail").value.trim(),
+      telefono: $("fTel").value.trim()
+    };
+  }
+
+  function sendToWebhook(data){
+    if(!CONFIG.webhook) return;   // sin webhook configurado: no hay a dónde mandarlo
+    try{
+      fetch(CONFIG.webhook, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(Object.assign({ origen:"rueda-formulario" }, data)),
+        keepalive:true
+      }).catch(function(){});    // si falla, el usuario igual avanza
+    }catch(e){}
+  }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var d = collect();
+
+    var ok = true;
+    ok = setErr("fNombre","eNombre",   d.nombre.length   < 2 ? "Escribí tu nombre"   : "") && ok;
+    ok = setErr("fApellido","eApellido",d.apellido.length < 2 ? "Escribí tu apellido" : "") && ok;
+    ok = setErr("fEmail","eEmail",     !validEmail(d.email) ? "Escribí un email válido" : "") && ok;
+    ok = setErr("fTel","eTel", d.telefono.replace(/\D/g,"").length < 8 ? "Escribí un número válido" : "") && ok;
+
+    if(!ok){
+      var first = form.querySelector('[aria-invalid="true"]');
+      if(first) first.focus();
+      reportHeight();
+      return;
+    }
+
+    $("submitBtn").disabled = true;
+    sendToWebhook(d);
+
+    // Embebido en la rueda: le avisamos al contenedor para que abra el diagnóstico.
+    if(embedded){
+      try{ window.parent.postMessage({ type:"flujo-lead", lead:d }, "*"); }catch(e){}
+      // Red de seguridad: si el contenedor no responde (script bloqueado, error),
+      // devolvemos el botón para que la persona pueda reintentar en vez de
+      // quedarse mirando un botón muerto.
+      setTimeout(function(){ $("submitBtn").disabled = false; }, 4000);
+      return;   // la rueda se encarga de mostrar el resultado
+    }
+
+    if(CONFIG.redirectUrl){ window.location.href = CONFIG.redirectUrl; return; }
+
+    // Uso suelto: estado de éxito
+    $("doneCta").setAttribute("href", CONFIG.booking);
+    $("formBox").classList.add("off");
+    $("doneBox").classList.add("on");
+    reportHeight();
+  });
+
+  // Limpia el error del campo apenas lo corrigen
+  ["fNombre","fApellido","fEmail","fTel"].forEach(function(id){
+    $(id).addEventListener("input", function(){
+      if(this.getAttribute("aria-invalid")){
+        this.removeAttribute("aria-invalid");
+        $("e"+id.slice(1)).textContent = "";
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

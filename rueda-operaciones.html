@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rueda de Operaciones — ¿Cuánto de tu negocio sigue funcionando a mano? | Flujo</title>
+<meta name="description" content="Puntuá las 8 áreas de tu operación, mirá el dibujo de tu negocio y recibí un diagnóstico de qué te está costando trabajar a mano. Herramienta gratuita de Flujo." />
+<meta name="author" content="Flujo" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://flujo.com.ar/rueda-operaciones.html" />
+<meta name="theme-color" content="#000000" />
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Flujo" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:url" content="https://flujo.com.ar/rueda-operaciones.html" />
+<meta property="og:title" content="Rueda de Operaciones — ¿Cuánto de tu negocio sigue funcionando a mano?" />
+<meta property="og:description" content="Puntuá tu operación, mirá el dibujo de tu negocio y descubrí qué te está costando trabajar a mano. Gratis, en 3 minutos." />
+<meta property="og:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Rueda de Operaciones — Flujo" />
+<meta name="twitter:description" content="Puntuá tu operación y descubrí qué te está costando trabajar a mano. Gratis, en 3 minutos." />
+<meta name="twitter:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
+
+<!-- Structured Data: WebApplication (misma línea que los bloques de index.html) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Rueda de Operaciones",
+  "url": "https://flujo.com.ar/rueda-operaciones.html",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "es-AR",
+  "description": "Herramienta gratuita para medir cuánto de tu negocio digital sigue funcionando a mano y qué te está costando cada semana.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ARS" },
+  "publisher": { "@type": "Organization", "name": "Flujo", "url": "https://flujo.com.ar/" }
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M924S8XC');</script>
+<!-- End Google Tag Manager -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- El formulario y el calendario se cargan desde acá: abrimos la conexión antes -->
+<link rel="preconnect" href="https://api.leadconnectorhq.com">
+<!-- Mismo pedido que index.html: Instrument Serif SIN el eje itálico.
+     La itálica la sintetiza el navegador, igual que en el resto del sitio. -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     Tokens — heredados del sistema visual de index.html
+     ============================================================ */
+  :root{
+    --bg:#000000;
+    --surface:linear-gradient(180deg,#0a0a0a 0%, #060606 100%);
+    --surface-soft:rgba(15,15,15,0.65);
+    --ink:#e9e9ea;
+    /* Estos dos valores están puestos para pasar contraste AA (4.5:1) sobre el
+       fondo negro. Con los anteriores (0.55 / 0.35) las etiquetas, las fechas
+       y los botones "+ Agregar área" / "×" quedaban en ~3:1: legibles en una
+       pantalla buena, invisibles en uno malo o con sol encima. */
+    --ink-soft:rgba(255,255,255,0.66);
+    --ink-faint:rgba(255,255,255,0.52);
+    --line:rgba(255,255,255,0.07);
+    --line-strong:rgba(255,255,255,0.14);
+    --accent:#e1e8dc;
+    --accent-dim:rgba(225,232,220,0.55);
+    --radius:24px;
+    --radius-sm:16px;
+    --serif:'Instrument Serif', serif;   /* misma pila que index.html */
+    --sans:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  *{box-sizing:border-box;}
+  /* Los controles de formulario NO heredan la tipografía del body: el navegador
+     les pone su fuente propia. Sin esta línea, "+ nota", la × de cada área, la ×
+     del modal y el link "Prefiero verlo sin dejar mis datos" salían en Arial. */
+  button,input,select,textarea{font-family:inherit;}
+  html,body{margin:0;}
+  /* Reserva el ancho de la barra de scroll: al abrir el modal se bloquea el
+     scroll del fondo y sin esto la página entera saltaba unos píxeles. */
+  html{scrollbar-gutter:stable;}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:
+      radial-gradient(60% 40% at 50% 0%, rgba(40,42,40,0.5) 0%, rgba(0,0,0,0) 70%),
+      var(--bg);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .grain{
+    position:absolute;inset:0;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;border-radius:inherit;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+  .app{max-width:1240px;margin:0 auto;padding:26px 22px 64px;}
+
+  .panel{background:var(--surface);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius);}
+  .panel-soft{background:var(--surface-soft);border:1px solid var(--line);border-radius:var(--radius-sm);}
+
+  /* ---------- Topbar ---------- */
+  .topbar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 30px;justify-content:space-between;margin-bottom:26px;}
+  .brandmark{display:inline-flex;align-items:center;transition:transform .25s var(--ease);}
+  .brandmark:hover{transform:scale(1.03);}
+  .brandmark:focus-visible{outline:2px solid var(--accent-dim);outline-offset:6px;border-radius:8px;}
+  .brandmark img{height:44px;width:auto;display:block;}
+  /* El logo Principal es blanco: en papel se usa el Invertido (negro).
+     !important porque `.brandmark img` / `.foot-inner img` le ganan en especificidad. */
+  .logo-print{display:none !important;}
+  .eyebrow{text-transform:uppercase;letter-spacing:0.18em;font-size:11px;color:var(--ink-faint);margin:14px 0 6px;}
+
+  /* ---------- Sistema de títulos ----------
+     base   = Inter semibold, blanco puro  → el cuerpo del título
+     .t-dim = Inter semibold, gris         → la parte secundaria
+     .t-acc = Instrument Serif italic      → el remate / la frase que golpea
+
+     Los valores son exactamente los de `.section-title` en index.html
+     (peso 600, tracking -0.035em, line-height 1.05). El peso importa:
+     Instrument Serif sólo trae el peso 400, así que a 600 el navegador
+     la engorda de forma sintética — así se ve el acento en index.html.
+     Si acá pusiéramos font-weight:400 la itálica saldría más fina que
+     en el resto del sitio. Por eso .t-acc NO fija peso: lo hereda. */
+  h1,.areas-head h2,.offer-title,.a-titular,.roll-redondez{
+    font-family:var(--sans);font-weight:600;color:#fff;letter-spacing:-0.035em;line-height:1.05;
+  }
+  .t-dim{color:rgba(255,255,255,0.5);}
+  .t-acc{font-family:var(--serif);font-style:italic;letter-spacing:-0.01em;color:#fff;}
+  h1{font-size:clamp(34px,5vw,54px);margin:0;}
+  .subtitle{color:var(--ink-soft);font-size:15px;margin:10px 0 0;max-width:48ch;line-height:1.6;}
+  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+  .sel-label{font-size:12px;color:var(--ink-faint);letter-spacing:.02em;}
+
+  select.preset{
+    font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--ink);
+    background:#0d0d0d;border:1px solid rgba(255,255,255,0.1);border-radius:999px;
+    padding:10px 14px;cursor:pointer;
+  }
+  select.preset:focus-visible{outline:2px solid var(--accent-dim);outline-offset:2px;}
+  .btn{
+    font-family:var(--sans);font-size:13px;font-weight:500;
+    border-radius:999px;padding:10px 16px;cursor:pointer;border:1px solid transparent;
+    transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s var(--ease);
+  }
+  .btn-ghost{background:#0d0d0d;color:var(--ink);border-color:rgba(255,255,255,0.08);}
+  .btn-ghost:hover{background:#161616;transform:translateY(-1px);border-color:var(--line-strong);}
+  .btn-ghost:active{transform:translateY(0);}
+  .btn-solid{background:#ffffff;color:#0a0a0a;font-weight:600;}
+  .btn-solid:hover{background:#f1f1f1;transform:translateY(-1px);}
+  .btn-solid:active{transform:translateY(0);}
+  .btn:focus-visible{outline:2px solid var(--accent-dim);outline-offset:3px;}
+
+  /* ---------- Intro ---------- */
+  .intro{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 20px;}
+  .intro-step{flex:1 1 240px;min-width:0;padding:16px 18px;display:flex;gap:13px;align-items:flex-start;
+    background:linear-gradient(180deg, rgba(20,20,20,0.6), rgba(10,10,10,0.6));border:1px solid rgba(255,255,255,0.06);border-radius:18px;
+    transition:border-color .3s ease, transform .3s var(--ease);}
+  .intro-step:hover{border-color:var(--line-strong);transform:translateY(-2px);}
+  .intro-num{flex:0 0 auto;width:26px;height:26px;border-radius:999px;background:rgba(225,232,220,0.1);border:1px solid rgba(225,232,220,0.2);
+    color:var(--accent);font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .intro-step b{display:block;font-size:14px;color:#fff;font-weight:500;margin-bottom:4px;}
+  .intro-step span.t{font-size:12.5px;color:var(--ink-soft);line-height:1.55;display:block;}
+  .intro-step em{font-style:normal;color:var(--accent);font-weight:500;}
+
+  /* ---------- Report identity ---------- */
+  .report-id{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:0 0 22px;padding:14px 20px;
+    background:var(--surface-soft);border:1px solid var(--line);border-radius:16px;}
+  .rid-name{font-size:13px;color:var(--ink-faint);display:flex;align-items:center;gap:10px;}
+  .rid-name input{font-family:var(--sans);font-size:15px;font-weight:500;color:#fff;border:none;
+    border-bottom:1px solid rgba(255,255,255,0.14);background:transparent;padding:4px 2px;min-width:190px;transition:border-color .2s ease;}
+  .rid-name input::placeholder{color:rgba(255,255,255,0.25);}
+  .rid-name input:focus{outline:none;border-bottom-color:var(--accent);}
+  .rid-date{margin-left:auto;font-size:13px;color:var(--ink-faint);}
+
+  /* ---------- Layout ---------- */
+  .main{display:grid;grid-template-columns:minmax(340px,1.05fr) 1.05fr;gap:30px;align-items:start;}
+
+  /* ---------- Wheel ---------- */
+  .wheel-col{position:sticky;top:18px;}
+  .wheel-card{padding:18px 16px 14px;position:relative;overflow:hidden;}
+  svg.wheel{width:100%;height:auto;display:block;overflow:visible;}
+  .wedge{cursor:pointer;stroke:#0a0a0a;stroke-width:2;transition:opacity .15s ease;}
+  .wedge.hl{stroke:#ffffff;stroke-width:2.4;}
+  .wg{stroke:rgba(255,255,255,0.07);}
+  .wg-out{stroke:rgba(255,255,255,0.14);}
+  .wl{fill:rgba(255,255,255,0.5);font-size:11.5px;font-weight:400;}
+  .wn-in{fill:#0b0b0b;font-size:12.5px;font-weight:700;}
+  .wn-out{fill:rgba(255,255,255,0.75);font-size:12.5px;font-weight:700;}
+  /* La marca al pie de la rueda: a 0.2 quedaba en 1.8:1, o sea invisible —
+     y es justo lo que tiene que leerse cuando alguien comparte la captura. */
+  .wsite{fill:rgba(255,255,255,0.4);font-size:10px;font-weight:400;letter-spacing:.04em;}
+  svg.wheel text{font-family:var(--sans);pointer-events:none;}
+
+  .wheel-avg{display:flex;align-items:baseline;justify-content:center;gap:10px;margin:6px 0 2px;position:relative;}
+  .wheel-avg-num{font-family:var(--serif);font-weight:400;font-size:46px;line-height:1;color:#fff;font-variant-numeric:tabular-nums;}
+  .wheel-avg-lbl{font-size:10.5px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);text-align:left;}
+
+  .reading{margin-top:14px;padding:18px 20px;}
+  .reading-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:center;}
+  .stat-k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 6px;}
+  .stat-v{font-family:var(--serif);font-size:26px;font-weight:400;margin:0;line-height:1.1;color:#fff;font-variant-numeric:tabular-nums;}
+  .stat-v small{display:block;font-size:12.5px;color:var(--ink-soft);font-family:var(--sans);margin-bottom:2px;line-height:1.35;}
+  .observation{margin:16px 0 0;padding-top:15px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft);line-height:1.6;}
+  .observation b{color:#fff;font-weight:500;}
+
+  /* ---------- Areas ---------- */
+  .areas-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin:0 0 8px;}
+  .areas-head h2{font-size:26px;margin:0;}
+  .hint{font-size:13px;color:var(--ink-soft);margin:0 0 16px;line-height:1.6;max-width:60ch;}
+  .hint em{font-style:normal;color:var(--accent);}
+  .areas{display:flex;flex-direction:column;gap:9px;}
+  .area{position:relative;background:linear-gradient(180deg, rgba(20,20,20,0.55), rgba(10,10,10,0.55));
+    border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:14px 15px 12px;
+    transition:border-color .25s ease, transform .25s var(--ease);}
+  .area.row-hl{border-color:var(--line-strong);transform:translateX(2px);}
+  .area-top{display:flex;align-items:center;gap:11px;padding-right:26px;}
+  .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
+  input.area-name{
+    flex:1 1 auto;min-width:0;font-family:var(--sans);font-size:15px;font-weight:500;color:#fff;
+    border:none;background:transparent;padding:3px 2px;border-bottom:1px solid transparent;border-radius:2px;
+    transition:border-color .2s ease;
+  }
+  input.area-name:hover{border-bottom-color:rgba(255,255,255,0.12);}
+  input.area-name:focus{outline:none;border-bottom-color:var(--accent);}
+  .badge{flex:0 0 auto;font-size:13px;font-weight:600;min-width:32px;text-align:center;background:rgba(255,255,255,0.04);
+    border-width:1px;border-style:solid;border-radius:999px;padding:3px 9px;font-variant-numeric:tabular-nums;}
+  input.area-slider{width:100%;margin:12px 0 2px;cursor:pointer;background:transparent;}
+  input.area-slider:focus-visible{outline:2px solid var(--accent-dim);outline-offset:4px;border-radius:4px;}
+  .area-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px;}
+  .note-toggle{font-size:12px;font-weight:500;color:var(--accent-dim);background:none;border:none;cursor:pointer;padding:4px 0;
+    transition:color .2s ease;}
+  .note-toggle:hover{color:var(--accent);text-decoration:underline;}
+  .note-toggle:focus-visible{outline:2px solid var(--accent-dim);outline-offset:2px;border-radius:4px;}
+  textarea.area-note{
+    width:100%;margin-top:8px;font-family:var(--sans);font-size:13.5px;color:var(--ink);line-height:1.5;
+    border:1px solid var(--line);border-radius:12px;padding:10px 11px;resize:vertical;min-height:62px;background:rgba(0,0,0,0.4);
+  }
+  textarea.area-note::placeholder{color:rgba(255,255,255,0.25);}
+  textarea.area-note:focus{outline:2px solid var(--accent-dim);outline-offset:-1px;border-color:transparent;}
+  .area-remove{
+    position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:8px;border:none;background:transparent;
+    color:var(--ink-faint);font-size:17px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease, color .2s ease;
+  }
+  .area-remove:hover{background:rgba(200,110,100,0.15);color:#e0968c;}
+  .area-remove:focus-visible{outline:2px solid var(--accent-dim);outline-offset:2px;}
+  .add-area{margin-top:12px;width:100%;border:1px dashed rgba(255,255,255,0.14);background:transparent;color:var(--ink-faint);
+    font-family:var(--sans);font-size:13.5px;font-weight:500;border-radius:14px;padding:13px;cursor:pointer;
+    transition:border-color .25s ease, color .25s ease, background .25s ease;}
+  .add-area:hover{border-color:var(--accent-dim);color:var(--accent);background:rgba(225,232,220,0.04);}
+  .add-area:focus-visible{outline:2px solid var(--accent-dim);outline-offset:3px;}
+  .add-area:disabled{opacity:.35;cursor:not-allowed;}
+
+  /* ---------- Roll ---------- */
+  .roll-wrap{margin-top:34px;}
+  .roll-btn{
+    display:block;width:100%;font-family:var(--sans);font-size:15px;font-weight:500;
+    color:var(--accent);background:rgba(225,232,220,0.06);border:1px solid rgba(225,232,220,0.22);border-radius:18px;padding:17px;cursor:pointer;
+    transition:background .25s ease, color .25s ease, transform .2s var(--ease);
+  }
+  .roll-btn:hover{background:rgba(225,232,220,0.12);transform:translateY(-1px);}
+  .roll-btn:active{transform:translateY(0);}
+  .roll-btn:focus-visible{outline:2px solid var(--accent-dim);outline-offset:3px;}
+  .roll-panel{margin-top:14px;padding:18px;}
+  #rollCanvas{display:block;width:100%;height:auto;border-radius:14px;}
+  .roll-verdict{margin-top:16px;text-align:center;}
+  .roll-redondez{font-size:clamp(24px,3.4vw,32px);margin:0;}
+  .roll-line{font-size:14.5px;color:var(--ink-soft);margin:8px auto 0;max-width:58ch;line-height:1.6;}
+  .roll-line b{color:#fff;font-weight:500;}
+  .roll-actions{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap;}
+
+  /* ---------- Analyze / gate / analysis ---------- */
+  .analyze-wrap{margin-top:16px;}
+  .analyze-btn{
+    display:block;width:100%;font-family:var(--sans);font-size:16px;font-weight:600;
+    color:#0a0a0a;background:#ffffff;border:none;border-radius:18px;padding:19px;cursor:pointer;
+    transition:background .2s ease, transform .2s var(--ease);
+  }
+  .analyze-btn:hover{background:#f1f1f1;transform:translateY(-1px);}
+  .analyze-btn:active{transform:translateY(0);}
+  .analyze-btn:focus-visible{outline:2px solid var(--accent-dim);outline-offset:3px;}
+
+  /* ---------- Modal del formulario ----------
+     El form abre como pop-up centrado y desenfoca el resto de la página.
+     No navega a otra URL: el formulario vive en un iframe adentro del modal. */
+  /* display:flex le gana al [hidden] del navegador (estilo de autor > estilo del UA),
+     así que hay que apagarlo a mano. Sin esto el modal nunca se oculta de verdad:
+     queda invisible pero tapando la pantalla, tabulable y leído por lectores de pantalla. */
+  .modal-backdrop[hidden]{display:none;}
+  .modal-backdrop{
+    position:fixed;inset:0;z-index:2000;
+    display:flex;align-items:center;justify-content:center;padding:24px;
+    background:rgba(4,4,5,0.62);
+    -webkit-backdrop-filter:blur(14px) saturate(0.85);
+            backdrop-filter:blur(14px) saturate(0.85);
+    opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+  }
+  .modal-backdrop.on{opacity:1;pointer-events:auto;}
+  .modal-card{
+    position:relative;width:min(640px,100%);max-height:min(92vh,900px);
+    display:flex;flex-direction:column;overflow:hidden;
+    background:#171817;border:1px solid rgba(255,255,255,0.11);border-radius:24px;
+    box-shadow:0 40px 90px -20px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.03);
+    transform:translateY(14px) scale(.985);transition:transform .34s var(--ease);
+  }
+  .modal-backdrop.on .modal-card{transform:none;}
+  .modal-close{
+    position:absolute;top:14px;right:14px;z-index:2;
+    width:34px;height:34px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);
+    background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65);
+    font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease,color .2s ease,transform .2s var(--ease);
+  }
+  .modal-close:hover{background:rgba(255,255,255,0.12);color:#fff;transform:scale(1.06);}
+  .modal-close:focus-visible{outline:2px solid #fff;outline-offset:3px;}
+  .modal-head{padding:30px 30px 0;}
+  .modal-eyebrow{text-transform:uppercase;letter-spacing:0.18em;font-size:11px;color:rgba(255,255,255,0.52);margin:0 0 10px;}
+  .modal-title{font-family:var(--sans);font-weight:600;color:#fff;letter-spacing:-0.035em;
+    line-height:1.08;font-size:clamp(22px,3.2vw,30px);margin:0 0 4px;padding-right:34px;}
+  .modal-body{flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px 30px 0;position:relative;}
+  /* El formulario de GoHighLevel tarda varios segundos en pintarse y hasta que
+     lo hace se ve un rectángulo blanco. Lo mantenemos invisible y mostramos un
+     esqueleto en su lugar hasta que avise que ya está. */
+  .modal-body iframe{display:block;width:100%;height:460px;border:0;background:transparent;
+    opacity:0;transition:opacity .35s var(--ease);}
+  .modal-body iframe.listo{opacity:1;}
+  .form-loading{position:absolute;inset:14px 30px 0;display:flex;flex-direction:column;gap:14px;pointer-events:none;}
+  .form-loading[hidden]{display:none;}
+  .sk{border-radius:12px;background:rgba(255,255,255,0.055);position:relative;overflow:hidden;}
+  .sk-label{height:11px;width:88px;border-radius:6px;}
+  .sk-field{height:50px;}
+  .sk-btn{height:54px;margin-top:6px;background:rgba(255,255,255,0.1);}
+  .sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);
+    animation:sweep 1.4s infinite;}
+  @keyframes sweep{100%{transform:translateX(100%);}}
+  @media (prefers-reduced-motion: reduce){.sk::after{display:none;}}
+  .modal-foot{padding:12px 30px 24px;text-align:center;}
+  .gate-skip{font-size:12.5px;color:rgba(255,255,255,0.52);background:none;border:none;cursor:pointer;padding:6px 0;text-decoration:underline;
+    transition:color .2s ease;}
+  .gate-skip:hover{color:rgba(255,255,255,0.6);}
+  .gate-skip:focus-visible{outline:2px solid rgba(255,255,255,0.6);outline-offset:2px;border-radius:4px;}
+  /* Con el modal abierto: no scrollea el fondo y el chat no flota sobre el blur */
+  body.modal-open{overflow:hidden;}
+  body.modal-open chat-widget{display:none !important;}
+  @media (max-width:560px){
+    .modal-backdrop{padding:12px;}
+    .modal-head{padding:26px 20px 0;}
+    .modal-body{padding:12px 20px 0;}
+    .modal-foot{padding:10px 20px 20px;}
+  }
+  .gate-skip:hover{color:var(--ink-soft);}
+  .gate-skip:focus-visible{outline:2px solid var(--accent-dim);outline-offset:2px;border-radius:4px;}
+
+  .analysis{margin-top:14px;padding:30px 28px 26px;position:relative;overflow:hidden;}
+  .a-titular{font-size:clamp(24px,3.6vw,34px);margin:0 0 4px;}
+  .a-titular:focus{outline:none;}
+  .a-block{margin-top:22px;}
+  .a-block h3{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-dim);margin:0 0 8px;}
+  .a-block p{margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:68ch;}
+  .a-block p + p{margin-top:12px;}
+  .a-block b{font-weight:500;color:#fff;}
+  .a-block .qbox{margin:0;padding-left:18px;border-left:1px solid rgba(225,232,220,0.25);list-style:none;}
+  .a-block .qbox li{font-size:14.5px;color:var(--ink-soft);margin:10px 0;line-height:1.6;}
+  .a-est{display:inline-flex;align-items:baseline;gap:9px;margin:2px 0 10px;}
+  .a-est-num{font-family:var(--serif);font-size:44px;line-height:1;color:#fff;font-variant-numeric:tabular-nums;}
+  .a-est-lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+  .a-caveat{font-size:12.5px;color:var(--ink-faint);line-height:1.6;margin:10px 0 0;max-width:64ch;}
+
+  .a-cta{margin-top:30px;padding-top:26px;border-top:1px solid var(--line);}
+  .offer{background:radial-gradient(70% 70% at 80% 20%, rgba(225,232,220,0.12), rgba(0,0,0,0) 70%), rgba(15,15,15,0.65);
+    border:1px solid rgba(225,232,220,0.18);border-radius:20px;padding:24px 26px;margin:0 0 22px;}
+  .offer-title{font-size:25px;margin:0 0 10px;}
+  .offer-body{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:0 0 16px;max-width:60ch;}
+  .offer-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+  .offer-list li{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;color:var(--ink-soft);line-height:1.5;}
+  .offer-list svg{flex:0 0 auto;margin-top:3px;color:var(--accent);}
+  .offer-meta{font-size:12.5px;color:var(--ink-faint);margin:16px 0 0;}
+
+  .cal-head{font-size:13px;color:var(--ink-faint);margin:0 0 12px;letter-spacing:.02em;}
+  .cal-embed{border:none;background:transparent;box-shadow:none;border-radius:14px;overflow:hidden;}
+  .cal-embed iframe{
+    position:relative;opacity:1;visibility:visible;pointer-events:auto;display:block;
+    width:100%;height:660px;min-height:660px;border:none;outline:none;border-radius:10px;background:transparent;color-scheme:normal;
+  }
+  .secondary-row{display:flex;align-items:center;gap:12px;margin-top:22px;flex-wrap:wrap;}
+  .ig-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:13.5px;font-weight:500;text-decoration:none;
+    color:var(--ink);background:#0d0d0d;border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:11px 18px;
+    transition:background .2s ease, transform .2s var(--ease), border-color .2s ease;}
+  .ig-btn:hover{background:#161616;transform:translateY(-1px);border-color:var(--line-strong);}
+  .ig-btn:focus-visible{outline:2px solid var(--accent-dim);outline-offset:3px;}
+  .share-msg{font-size:12.5px;color:var(--accent-dim);}
+
+  /* ---------- Footer ---------- */
+  footer{margin-top:34px;}
+  .foot-inner{padding:28px 30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;}
+  .foot-inner img{height:42px;width:auto;display:block;margin-bottom:14px;}
+  .foot-tag{font-size:13.5px;color:var(--ink-soft);max-width:44ch;line-height:1.6;margin:0;}
+  .foot-meta{font-size:12px;color:var(--ink-faint);margin:16px 0 0;}
+  .foot-link{color:var(--accent-dim);text-decoration:none;font-weight:500;transition:color .2s ease;}
+  .foot-link:hover{color:var(--accent);text-decoration:underline;}
+  .foot-link:focus-visible{outline:2px solid var(--accent-dim);outline-offset:3px;border-radius:4px;}
+  .foot-note{font-size:12px;color:var(--ink-faint);margin:20px 0 0;line-height:1.6;text-align:center;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .main{grid-template-columns:1fr;gap:26px;}
+    .wheel-col{position:static;}
+    .foot-inner{grid-template-columns:1fr;align-items:start;}
+  }
+  @media (max-width:560px){
+    .app{padding:20px 14px 48px;}
+    .topbar{gap:16px;}
+    .actions{width:100%;}
+    .rid-date{margin-left:0;width:100%;}
+    .analysis{padding:22px 18px;}
+    .offer{padding:20px 18px;}
+    .reading-grid{gap:10px;}
+    .stat-v{font-size:22px;}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .wheel-anim{animation:rise .55s var(--ease) both;}
+    @keyframes rise{from{opacity:0;transform:scale(.97);}to{opacity:1;transform:none;}}
+    .reveal-soft{animation:softIn .5s var(--ease) both;}
+    @keyframes softIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+
+  /* ---------- Print / PDF: invierte a fondo claro ---------- */
+  @media print{
+    body{background:#fff !important;color:#1a1a1a;}
+    .app{padding:0;max-width:none;}
+    .panel,.panel-soft,.area,.intro-step,.report-id,.offer,.analysis{
+      background:#fff !important;border:1px solid #ddd !important;box-shadow:none !important;break-inside:avoid;}
+    h1,.areas-head h2,.stat-v,.a-titular,.offer-title,.wheel-avg-num,.a-est-num{color:#111 !important;}
+    /* .t-acc y .t-dim fijan su propio color blanco/gris claro: sin esto salían
+       en blanco sobre papel blanco y se perdía media frase de cada título. */
+    .t-acc{color:#111 !important;}
+    .t-dim{color:#8a8a8a !important;}
+    .subtitle,.hint,.observation,.a-block p,.offer-body,.foot-tag,.stat-v small,
+    .offer-list li,.a-block .qbox li{color:#444 !important;}
+    .stat-k,.a-block h3,.wheel-avg-lbl,.rid-date,.foot-meta,.a-caveat,.eyebrow,
+    .a-est-lbl,.foot-note{color:#777 !important;}
+    /* tildes de la oferta: el verde salvia sobre papel blanco no se ve */
+    .offer-list svg{color:#3f6b57 !important;}
+    .a-block .qbox{border-left-color:#c9d2c9 !important;}
+    input.area-name,.rid-name input,.observation b,.a-block b{color:#111 !important;}
+    .wedge{stroke:#fff !important;}
+    .wg{stroke:#eaeeea !important;}
+    .wg-out{stroke:#d7ddd7 !important;}
+    .wl{fill:#5c6b68 !important;}
+    .wn-out{fill:#444 !important;}
+    .wsite{fill:#b4beba !important;}
+    .grain{display:none !important;}
+    /* accents claros ilegibles sobre papel blanco */
+    .hint em,.intro-step em,.foot-link,.roll-redondez span{color:#3f6b57 !important;}
+    .badge{color:#333 !important;border-color:#bbb !important;background:#fff !important;}
+    .rid-name{color:#666 !important;}
+    .logo-screen{display:none !important;}
+    .logo-print{display:block !important;}
+    chat-widget{display:none !important;}
+    /* #gate, no .gate: el elemento tiene id="gate" y clase "modal-backdrop".
+       Con el selector viejo el modal salía impreso como un bloque en blanco. */
+    .actions,.add-area,.area-remove,.note-toggle,input.area-slider,.roll-wrap,.intro,
+    .analyze-btn,#gate,.secondary-row,.cal-embed,.cal-head,.a-cta .offer-meta{display:none !important;}
+    .main{display:block;}
+    .wheel-col{position:static;}
+    .area{margin-bottom:6px;page-break-inside:avoid;}
+    textarea.area-note{background:#fff;color:#222;border-color:#ddd;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M924S8XC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="app">
+
+  <header class="topbar">
+    <div>
+      <a class="brandmark" href="/" aria-label="Flujo — Inicio">
+        <img class="logo-screen" src="brand_assets/Flujo Logo Principal.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="44" draggable="false" />
+        <img class="logo-print" src="brand_assets/Flujo Logo Invertido.svg" alt="" aria-hidden="true" width="140" height="44" draggable="false" />
+      </a>
+      <p class="eyebrow">Herramienta gratuita</p>
+      <h1>Tu negocio corre solo <span class="t-dim">en el papel.</span><br><span class="t-acc">¿Y en la práctica?</span></h1>
+      <p class="subtitle">Puntuá tu operación y mirá qué parte todavía funciona a mano — y cuánto te está costando cada semana.</p>
+    </div>
+    <div class="actions">
+      <span class="sel-label">Tu caso:</span>
+      <select class="preset" id="preset" aria-label="Elegí tu caso">
+        <option value="solo">Emprendedor — lo corrés vos</option>
+        <option value="equipo">Equipo — 2 o más personas</option>
+      </select>
+      <button class="btn btn-ghost" id="reset" type="button">Reiniciar</button>
+      <button class="btn btn-solid" id="print" type="button">Imprimir / PDF</button>
+    </div>
+  </header>
+
+  <div class="intro">
+    <div class="intro-step">
+      <span class="intro-num">1</span>
+      <div><b>Elegí tu caso</b><span class="t">En <em>“Tu caso”</em>: <em>Emprendedor</em> si el negocio lo corrés vos, <em>Equipo</em> si ya son 2 o más.</span></div>
+    </div>
+    <div class="intro-step">
+      <span class="intro-num">2</span>
+      <div><b>Puntuá del 1 al 10</b><span class="t"><em>1</em> = lo hacés todo a mano. <em>10</em> = corre solo sin que lo toques. Puntuá cómo está <em>hoy</em>, no como te gustaría.</span></div>
+    </div>
+    <div class="intro-step">
+      <span class="intro-num">3</span>
+      <div><b>Hacela tuya</b><span class="t">¿Un área no aplica a tu negocio? Renombrala, sacala o agregá la que sí tenga sentido.</span></div>
+    </div>
+  </div>
+
+  <div class="report-id">
+    <label class="rid-name">Para: <input id="userName" type="text" placeholder="Tu nombre" autocomplete="name"></label>
+    <span class="rid-date" id="userDate"></span>
+  </div>
+
+  <div class="main">
+    <!-- ===== Rueda ===== -->
+    <section class="wheel-col" aria-label="Tu rueda de operaciones">
+      <div class="panel wheel-card">
+        <div class="grain" aria-hidden="true"></div>
+        <div id="wheelWrap"></div>
+        <div class="wheel-avg">
+          <span class="wheel-avg-num" id="rPromedio">5.0</span>
+          <span class="wheel-avg-lbl">Nivel de<br>automatización</span>
+        </div>
+      </div>
+      <div class="panel-soft reading">
+        <div class="reading-grid">
+          <div>
+            <p class="stat-k">Lo que mejor corre solo</p>
+            <p class="stat-v" id="rAlta"></p>
+          </div>
+          <div>
+            <p class="stat-k">Lo que más te come el día</p>
+            <p class="stat-v" id="rBaja"></p>
+          </div>
+        </div>
+        <p class="observation" id="rObs"></p>
+      </div>
+    </section>
+
+    <!-- ===== Áreas ===== -->
+    <section aria-label="Tu operación">
+      <div class="areas-head">
+        <h2>Tu operación <span class="t-acc">hoy.</span></h2>
+      </div>
+      <p class="hint">Puntuá cada área del 1 al 10: <em>1</em> = lo hacés 100% a mano, <em>10</em> = corre solo sin que lo toques. Puntuá cómo está <em>hoy</em>. Podés renombrar cualquier área.</p>
+      <div class="areas" id="areas"></div>
+      <button class="add-area" id="addArea" type="button">+ Agregar área</button>
+    </section>
+  </div>
+
+  <!-- ===== Animación: hacer rodar la rueda ===== -->
+  <section class="roll-wrap" aria-label="Hacer rodar tu operación">
+    <button id="rollBtn" class="roll-btn" type="button">▶ Hacé rodar tu operación</button>
+    <div id="rollPanel" class="panel roll-panel" hidden>
+      <canvas id="rollCanvas" width="900" height="300" aria-label="Animación de tu rueda de operaciones rodando"></canvas>
+      <div class="roll-verdict" id="rollVerdict"></div>
+      <div class="roll-actions">
+        <button id="rollAgain" class="btn btn-ghost" type="button">▶ Rodar de nuevo</button>
+        <button id="rollClose" class="btn btn-ghost" type="button">Cerrar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Análisis + CTA ===== -->
+  <section class="analyze-wrap" aria-label="Diagnóstico de resultados">
+    <button id="analyzeBtn" class="analyze-btn" type="button">Ver mi diagnóstico →</button>
+
+    <!-- Soft gate: el formulario vive en rueda-formulario.html y se embebe acá.
+         Al enviarse avisa por postMessage y esta página abre el diagnóstico. -->
+    <div id="gate" class="modal-backdrop" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" id="modalClose" aria-label="Cerrar">&times;</button>
+        <div class="modal-head">
+          <p class="modal-eyebrow">Tu diagnóstico está listo</p>
+          <p class="modal-title" id="modalTitle">¿A quién le <span class="t-dim">mandamos el diagnóstico?</span> <span class="t-acc">Dejanos tus datos.</span></p>
+        </div>
+        <div class="modal-body">
+          <!-- Esqueleto mientras carga el formulario (evita el rectángulo blanco) -->
+          <div class="form-loading" id="formLoading" aria-hidden="true">
+            <div class="sk sk-label"></div><div class="sk sk-field"></div>
+            <div class="sk sk-label"></div><div class="sk sk-field"></div>
+            <div class="sk sk-label"></div><div class="sk sk-field"></div>
+            <div class="sk sk-btn"></div>
+          </div>
+          <iframe id="gateFrame" title="Dejanos tus datos para ver tu diagnóstico" scrolling="no"></iframe>
+        </div>
+        <div class="modal-foot">
+          <button class="gate-skip" type="button" id="gateSkip">Prefiero verlo sin dejar mis datos</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         INTEGRACIÓN GHL / LeadConnector — PENDIENTE DE CONECTAR
+         ------------------------------------------------------------
+         El formulario (rueda-formulario.html) valida y avisa a esta
+         página, que revela el diagnóstico. Falta sólo mandar el lead.
+
+         OPCIÓN A (recomendada) — webhook / inbound trigger de GHL:
+           1. En GHL: Automation → Workflows → nuevo workflow con trigger
+              "Inbound Webhook". Copiá la URL que te da.
+           2. Pegala en CONFIG.leadWebhook (abajo, en el <script>).
+              Se manda { nombre, apellido, email, telefono, caso, promedio,
+              areaMasBaja, areaMasAlta, resumen, areas[], origen }.
+           IMPORTANTE: dejá CONFIG.webhook VACÍO dentro de
+           rueda-formulario.html, si no el lead sale dos veces.
+
+         OPCIÓN B — el form suelto dentro de GHL:
+           Usá rueda-formulario.html por su cuenta y poné el webhook
+           en SU propio CONFIG.webhook. Ahí manda sólo los datos de
+           contacto (sin los puntajes de la rueda).
+
+         OPCIÓN C — formulario nativo de GHL:
+           Cambiá el data-src del iframe de arriba por el embed de GHL y
+           en "On Submit → Redirect" apuntá a esta página con ?ok=1.
+           El script ya revela el diagnóstico si detecta ?ok=1 en la URL.
+         ============================================================ -->
+
+    <!-- Sin aria-live: al abrirse, un lector de pantalla leería de corrido
+         las ~500 palabras del diagnóstico. En su lugar, al revelarlo le
+         movemos el foco al titular (ver revealAnalysis). -->
+    <div id="analysis" hidden>
+      <div class="panel analysis">
+        <div class="grain" aria-hidden="true"></div>
+        <div id="analysisText"></div>
+
+        <div class="a-cta">
+          <div class="offer">
+            <h3 class="offer-title">Tu auditoría gratuita <span class="t-dim">de 30 minutos.</span> <span class="t-acc">Sin vueltas.</span></h3>
+            <p class="offer-body">Esta rueda te muestra <b>dónde</b> está el problema. La auditoría te dice <b>cuánto vale arreglarlo</b>, con tus números reales:</p>
+            <ul class="offer-list">
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cuánto te está costando hoy tu operación manual (USD/mes)</li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cuántas horas semanales recuperás con automatización</li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cuánto podés crecer en los próximos 90 días</li>
+            </ul>
+            <p class="offer-meta">30 minutos · sin compromiso · te llevás el reporte igual</p>
+          </div>
+
+          <p class="cal-head">Elegí el día y la hora que te queden bien:</p>
+          <div class="cal-embed" id="calWrap">
+            <!-- src se inyecta recién cuando el usuario abre el diagnóstico (no carga antes) -->
+            <iframe
+              id="calFrame"
+              data-src="https://api.leadconnectorhq.com/widget/booking/h17RRgAL8FEfAfenOwFW"
+              scrolling="no"
+              title="Reservá tu auditoría gratuita"></iframe>
+          </div>
+
+          <div class="secondary-row">
+            <a class="ig-btn" id="igBtn" href="https://www.instagram.com/joinflujo/" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></svg>
+              Seguinos en Instagram
+            </a>
+            <button class="ig-btn" id="shareBtn" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 15V3m0 0L8 7m4-4l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Compartir mi rueda
+            </button>
+            <span class="share-msg" id="shareMsg" role="status"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="panel foot-inner">
+      <div>
+        <img class="logo-screen" src="brand_assets/Flujo Logo Principal.svg" alt="Flujo" width="140" height="42" draggable="false" />
+        <img class="logo-print" src="brand_assets/Flujo Logo Invertido.svg" alt="" aria-hidden="true" width="140" height="42" draggable="false" />
+        <p class="foot-tag">Automatizamos tu operación digital para que vuelvas a hacer lo único que no se puede automatizar: tu contenido y tus clientes.</p>
+        <p class="foot-meta">Buenos Aires · LATAM · español</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:10px;">
+        <a class="foot-link" href="/">← Volver a flujo.com.ar</a>
+        <span class="foot-meta" style="margin:0;">© <span id="y"></span> Flujo</span>
+      </div>
+    </div>
+    <p class="foot-note">Tu rueda vive solo en esta pantalla — si cerrás o recargás, se borra. Imprimí o guardá en PDF para conservarla.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================ CONFIGURACIÓN ============================
+     Editá SOLO este bloque para cambiar marca, links o integración.
+     ====================================================================== */
+  var CONFIG = {
+    brandName: "Flujo",
+    site:      "flujo.com.ar",
+    shareUrl:  "https://flujo.com.ar/rueda-operaciones.html",
+    instagram: "https://www.instagram.com/joinflujo/",
+    booking:   "https://api.leadconnectorhq.com/widget/booking/h17RRgAL8FEfAfenOwFW",
+
+    // Formulario que se abre en el pop-up. Dos opciones:
+    //   1) El form de GoHighLevel (el que estás usando ahora).
+    //   2) "rueda-formulario.html?bare=1" → el form propio, con tu diseño exacto.
+    formSrc:   "https://api.leadconnectorhq.com/widget/form/y1Wmz0MpNqaaNEQqDN8E",
+
+    // ↓↓↓ PEGÁ ACÁ la URL del Inbound Webhook de tu workflow de GHL.
+    //     Mientras esté vacío, el form valida y revela el diagnóstico
+    //     igual, pero el lead NO sale a ningún lado.
+    leadWebhook: ""
+  };
+  /* ====================================================================== */
+
+  // ---- Paleta de 8 tonos, derivada de la de index.html (tierra/salvia apagados) ----
+  var SEG = [
+    {c:"#D4D8C4", d:"#7C8168"}, // salvia
+    {c:"#C8B8A0", d:"#8A7756"}, // tostado
+    {c:"#C9A88C", d:"#8E6E51"}, // ocre
+    {c:"#C89A8C", d:"#8E5C4C"}, // terracota
+    {c:"#D8C4B4", d:"#8E7761"}, // arena cálida
+    {c:"#A8C4B4", d:"#5E8874"}, // menta
+    {c:"#9FB9C4", d:"#587784"}, // azul polvo
+    {c:"#B4A8C4", d:"#6E6288"}  // lavanda
+  ];
+  function seg(i){ return SEG[i % SEG.length]; }
+
+  var PRESETS = {
+    solo: [
+      "Ventas y cobros",
+      "Atención y respuesta",
+      "Onboarding de clientes",
+      "Lanzamientos",
+      "Seguimiento y recuperación",
+      "Datos e ingresos a la vista",
+      "Tu tiempo fuera del negocio",
+      "Crecer sin depender de vos"
+    ],
+    equipo: [
+      "Procesos documentados",
+      "Coordinación del equipo",
+      "Ventas y cobros",
+      "Onboarding de clientes",
+      "Lanzamientos",
+      "Reporting y dashboards",
+      "Delegación real",
+      "Escalar sin sumar gente"
+    ]
+  };
+  var PRESET_LABEL = { solo:"Emprendedor (lo corre solo)", equipo:"Equipo (2+ personas)" };
+
+  var MIN_AREAS = 3, MAX_AREAS = 12, DEFAULT_SCORE = 5;
+  var state = { areas: [], preset: "solo" };
+
+  // ---- DOM ----
+  var $areas   = document.getElementById("areas");
+  var $wheel   = document.getElementById("wheelWrap");
+  var $preset  = document.getElementById("preset");
+  var $addArea = document.getElementById("addArea");
+
+  function loadPreset(key){
+    state.preset = key;
+    state.areas = PRESETS[key].map(function(name){ return {name:name, score:DEFAULT_SCORE, note:""}; });
+  }
+
+  // ---------- Utilidades ----------
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function truncate(s,n){ s=String(s); return s.length>n ? s.slice(0,n-1)+"…" : s; }
+
+  // Parte un nombre de área en máximo 2 líneas para que entre en la rueda
+  // sin cortar palabras al medio (los nombres de operación son largos).
+  function wrapLabel(s){
+    var MAX = 16, MAXLINES = 2;
+    var words = String(s).trim().split(/\s+/);
+    var lines = [], cur = "", dropped = false;
+    for(var i=0; i<words.length; i++){
+      var w = words[i];
+      if(w.length > MAX) w = w.slice(0, MAX-1) + "…";
+      var test = cur ? cur + " " + w : w;
+      if(!cur || test.length <= MAX){ cur = test; }
+      else{
+        if(lines.length === MAXLINES-1){ dropped = true; break; }
+        lines.push(cur); cur = w;
+      }
+    }
+    if(cur) lines.push(cur);
+    if(!lines.length) lines = [""];
+    if(dropped){
+      var last = lines[lines.length-1];
+      lines[lines.length-1] = (last.length > MAX-1 ? last.slice(0,MAX-1) : last) + "…";
+    }
+    return lines;
+  }
+
+  // ---------- Geometría de la rueda ----------
+  var VBW=620, VBH=540, CX=310, CY=258, R=176, LABELR=R+24;
+  function polar(r,a){ return { x:CX + r*Math.cos(a), y:CY + r*Math.sin(a) }; }
+  function wedgePath(r,a0,a1){
+    if(r<=0) return "";
+    var p0=polar(r,a0), p1=polar(r,a1);
+    var large=(a1-a0)>Math.PI?1:0;
+    return "M "+CX+" "+CY+" L "+p0.x.toFixed(2)+" "+p0.y.toFixed(2)+
+           " A "+r.toFixed(2)+" "+r.toFixed(2)+" 0 "+large+" 1 "+p1.x.toFixed(2)+" "+p1.y.toFixed(2)+" Z";
+  }
+
+  function renderWheel(animate){
+    var n = state.areas.length;
+    var step = (2*Math.PI)/n;
+    var first = -Math.PI/2;
+    var svg = '<svg class="wheel'+(animate?" wheel-anim":"")+'" viewBox="0 0 '+VBW+' '+VBH+'" role="img" aria-label="Rueda de operaciones de tu negocio">';
+
+    // anillos de referencia
+    [2,4,6,8,10].forEach(function(k){
+      var rr=R*k/10;
+      svg += '<circle class="'+(k===10?"wg-out":"wg")+'" cx="'+CX+'" cy="'+CY+'" r="'+rr.toFixed(1)+'" fill="none" stroke-width="1"/>';
+    });
+    // radios
+    for(var s=0;s<n;s++){
+      var a=first+s*step, p=polar(R,a);
+      svg += '<line class="wg" x1="'+CX+'" y1="'+CY+'" x2="'+p.x.toFixed(1)+'" y2="'+p.y.toFixed(1)+'" stroke-width="1"/>';
+    }
+    // gajos de fondo (el "100%" de cada área)
+    state.areas.forEach(function(area,i){
+      var a0=first+i*step, a1=a0+step;
+      svg += '<path d="'+wedgePath(R,a0,a1)+'" fill="'+seg(i).c+'" opacity="0.08"/>';
+    });
+    // gajos con el valor real
+    state.areas.forEach(function(area,i){
+      var a0=first+i*step, a1=a0+step, rv=R*area.score/10;
+      svg += '<path id="wedge-'+i+'" class="wedge" data-i="'+i+'" d="'+wedgePath(rv,a0,a1)+'" fill="'+seg(i).c+'" opacity="0.9"/>';
+    });
+    // números
+    state.areas.forEach(function(area,i){
+      var a0=first+i*step, mid=a0+step/2, rv=R*area.score/10, rt, cls;
+      if(rv>44){ rt=rv-16; cls="wn-in"; } else { rt=rv+14; cls="wn-out"; }
+      var pt=polar(rt,mid);
+      svg += '<text class="'+cls+'" x="'+pt.x.toFixed(1)+'" y="'+pt.y.toFixed(1)+'" text-anchor="middle" dominant-baseline="central">'+area.score+'</text>';
+    });
+    // etiquetas externas (hasta 2 líneas)
+    state.areas.forEach(function(area,i){
+      var a0=first+i*step, mid=a0+step/2, pt=polar(LABELR,mid);
+      var cos=Math.cos(mid), anchor = cos>0.30?"start":(cos<-0.30?"end":"middle");
+      var lines = wrapLabel(area.name);
+      var y0 = pt.y - (lines.length-1)*7;
+      var tspans = lines.map(function(l,li){
+        return '<tspan x="'+pt.x.toFixed(1)+'" dy="'+(li===0?0:14)+'">'+esc(l)+'</tspan>';
+      }).join("");
+      svg += '<text class="wl" x="'+pt.x.toFixed(1)+'" y="'+y0.toFixed(1)+'" text-anchor="'+anchor+'" dominant-baseline="central">'+tspans+'</text>';
+    });
+    // centro
+    svg += '<circle cx="'+CX+'" cy="'+CY+'" r="5" fill="#0a0a0a" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>';
+    svg += '<text class="wsite" x="'+CX+'" y="'+(VBH-12)+'" text-anchor="middle">'+esc(CONFIG.site)+'</text>';
+    svg += '</svg>';
+    $wheel.innerHTML = svg;
+
+    Array.prototype.forEach.call($wheel.querySelectorAll(".wedge"), function(w){
+      var i = w.getAttribute("data-i");
+      w.addEventListener("mouseenter", function(){ highlightRow(i,true); });
+      w.addEventListener("mouseleave", function(){ highlightRow(i,false); });
+      w.addEventListener("click", function(){ focusRow(i); });
+    });
+  }
+
+  // ---------- Tarjetas de área ----------
+  function renderAreas(){
+    $areas.innerHTML = "";
+    state.areas.forEach(function(area,i){
+      var card = document.createElement("div");
+      card.className="area"; card.setAttribute("data-i",i);
+      var s = seg(i);
+      card.innerHTML =
+        '<button class="area-remove" type="button" title="Quitar área" aria-label="Quitar área">×</button>'+
+        '<div class="area-top">'+
+          '<span class="dot" style="background:'+s.c+'"></span>'+
+          '<input class="area-name" type="text" value="'+esc(area.name)+'" aria-label="Nombre del área" />'+
+          '<span class="badge" style="border-color:'+s.c+';color:'+s.c+'">'+area.score+'</span>'+
+        '</div>'+
+        '<input class="area-slider" type="range" min="1" max="10" step="1" value="'+area.score+'" style="accent-color:'+s.c+'" aria-label="Puntaje de '+esc(area.name)+'" />'+
+        '<div class="area-foot"><button class="note-toggle" type="button">'+(area.note?"Editar nota":"+ nota")+'</button></div>'+
+        '<textarea class="area-note" placeholder="¿Qué es lo que hacés a mano acá?" '+(area.note?"":"hidden")+'>'+esc(area.note)+'</textarea>';
+
+      var nameI = card.querySelector(".area-name");
+      var slide = card.querySelector(".area-slider");
+      var badge = card.querySelector(".badge");
+      var rmv   = card.querySelector(".area-remove");
+      var noteT = card.querySelector(".note-toggle");
+      var noteA = card.querySelector(".area-note");
+
+      nameI.addEventListener("input", function(){
+        state.areas[i].name = nameI.value;
+        slide.setAttribute("aria-label","Puntaje de "+nameI.value);
+        renderWheel(false); updateReading();
+      });
+      slide.addEventListener("input", function(){
+        var v = parseInt(slide.value,10);
+        state.areas[i].score = v; badge.textContent = v;
+        // Arrastrar el slider dispara ~60 eventos/segundo y cada uno rearmaba
+        // el SVG entero. Lo agrupamos en un frame: se ve igual, sin tirones.
+        scheduleWheel();
+      });
+      rmv.addEventListener("click", function(){ removeArea(i); });
+      noteT.addEventListener("click", function(){
+        if(noteA.hasAttribute("hidden")){ noteA.removeAttribute("hidden"); noteA.focus(); }
+        else { noteA.setAttribute("hidden",""); }
+      });
+      noteA.addEventListener("input", function(){
+        state.areas[i].note = noteA.value;
+        noteT.textContent = noteA.value ? "Editar nota" : "+ nota";
+      });
+
+      card.addEventListener("mouseenter", function(){ var w=document.getElementById("wedge-"+i); if(w) w.classList.add("hl"); });
+      card.addEventListener("mouseleave", function(){ var w=document.getElementById("wedge-"+i); if(w) w.classList.remove("hl"); });
+
+      // Con el mínimo de áreas el botón no hace nada: mejor no ofrecerlo.
+      if(state.areas.length <= MIN_AREAS){
+        rmv.disabled = true;
+        rmv.style.display = "none";
+      }
+
+      $areas.appendChild(card);
+    });
+    $addArea.disabled = state.areas.length >= MAX_AREAS;
+  }
+
+  // Redibuja la rueda y la lectura una sola vez por frame.
+  var wheelRAF = null;
+  function scheduleWheel(){
+    if(wheelRAF) return;
+    wheelRAF = requestAnimationFrame(function(){
+      wheelRAF = null;
+      renderWheel(false); updateReading();
+    });
+  }
+
+  function highlightRow(i,on){
+    var card = $areas.querySelector('.area[data-i="'+i+'"]');
+    if(card) card.classList.toggle("row-hl", on);
+  }
+  function focusRow(i){
+    var card = $areas.querySelector('.area[data-i="'+i+'"]');
+    if(!card) return;
+    card.scrollIntoView({behavior:"smooth", block:"center"});
+    var sl = card.querySelector(".area-slider"); if(sl) sl.focus();
+  }
+  function addArea(){
+    if(state.areas.length >= MAX_AREAS) return;
+    state.areas.push({name:"Nueva área", score:DEFAULT_SCORE, note:""});
+    renderAreas(); renderWheel(false); updateReading();
+  }
+  function removeArea(i){
+    if(state.areas.length <= MIN_AREAS) return;
+    state.areas.splice(i,1);
+    renderAreas(); renderWheel(false); updateReading();
+  }
+
+  // ---------- Panel de lectura ----------
+  function mean(){
+    if(!state.areas.length) return null;
+    var t=0; state.areas.forEach(function(a){ t+=a.score; });
+    return t/state.areas.length;
+  }
+  function extremes(){
+    var hi=state.areas[0], lo=state.areas[0];
+    state.areas.forEach(function(a){ if(a.score>hi.score) hi=a; if(a.score<lo.score) lo=a; });
+    return {hi:hi, lo:lo};
+  }
+  function updateReading(){
+    var avg = mean();
+    document.getElementById("rPromedio").textContent = (avg!=null ? avg.toFixed(1) : "—");
+    if(!state.areas.length) return;
+
+    var e = extremes();
+    document.getElementById("rAlta").innerHTML = '<small>'+esc(truncate(e.hi.name,34))+'</small>'+e.hi.score;
+    document.getElementById("rBaja").innerHTML = '<small>'+esc(truncate(e.lo.name,34))+'</small>'+e.lo.score;
+
+    var obs = document.getElementById("rObs");
+    if(e.hi.score === e.lo.score){
+      obs.innerHTML = "Tu operación está pareja en <b>"+e.hi.score+"</b>. ¿Es que todo funciona igual de bien, o todavía no te miraste con honestidad?";
+    } else {
+      obs.innerHTML = "Hoy tu negocio se apoya en <b>"+esc(e.hi.name)+"</b> y se hunde en <b>"+esc(e.lo.name)+"</b>. Cada semana que <b>"+esc(e.lo.name)+"</b> siga a mano, lo pagás en horas.";
+    }
+    renderAnalysis();
+  }
+
+  // ---------- Diagnóstico ----------
+  function band(avg){
+    if(avg>=8) return "mayormente automatizada";
+    if(avg>=6) return "a medio camino";
+    if(avg>=4) return "muy manual";
+    return "corriendo 100% a pulmón";
+  }
+  function resumen(){
+    var avg = mean(), e = extremes();
+    var who = (document.getElementById("userName").value || "").trim();
+    return (who ? who+" — " : "") + "Rueda de Operaciones ("+PRESET_LABEL[state.preset]+"): "+
+           avg.toFixed(1)+"/10 de automatización. Área más débil: "+e.lo.name+" ("+e.lo.score+"/10). "+
+           "Más fuerte: "+e.hi.name+" ("+e.hi.score+"/10).";
+  }
+
+  function renderAnalysis(){
+    var box = document.getElementById("analysisText");
+    var wrap = document.getElementById("analysis");
+    if(!box || !wrap || wrap.hasAttribute("hidden")) return;   // solo si ya pidió el diagnóstico
+    var avg = mean(); if(avg==null) return;
+
+    var e = extremes(), hi = e.hi, lo = e.lo;
+    var brecha = hi.score - lo.score;
+    var nivel  = band(avg);
+    var alto = avg>=6, disperso = brecha>=4;
+
+    // Titular en 3 tiempos: base blanca + <span dim> secundario + remate en serif itálica
+    var titular;
+    if(alto && !disperso)       titular = 'Tu operación ya corre <span class="t-dim">bastante sola.</span> <span class="t-acc">Ahora se escala.</span>';
+    else if(alto && disperso)   titular = 'Vas rápido <span class="t-dim">para el promedio.</span> <span class="t-acc">Pero hay un cuello de botella.</span>';
+    else if(!alto && !disperso) titular = 'Tu negocio funciona. <span class="t-acc">Y funciona a pulmón.</span>';
+    else                        titular = 'Estás sosteniendo a mano <span class="t-dim">lo que más importa.</span> <span class="t-acc">Y así no escala.</span>';
+
+    var bajas = state.areas.filter(function(a){return a.score<=4;})
+                           .sort(function(a,b){return a.score-b.score;})
+                           .slice(0,3).map(function(a){return a.name;});
+    var bajasTxt = bajas.length
+      ? "Lo que más te está comiendo el día: <b>"+bajas.map(esc).join("</b>, <b>")+"</b>."
+      : "Ningún área está en zona crítica (4 o menos) — buena base para escalar.";
+
+    var dispTxt = brecha<=2 ? "una operación pareja"
+                : brecha<=4 ? "un desbalance moderado de "+brecha+" puntos"
+                : "un desbalance fuerte de "+brecha+" puntos entre tu punto más fuerte y el más débil";
+
+    // Estimación gruesa de horas manuales por semana. Deliberadamente
+    // presentada como estimación: el número real sale en la auditoría.
+    var horas = Math.max(2, Math.round((10-avg)*2));
+
+    var html =
+      /* h2 con tabindex="-1": es el destino del foco al revelar el diagnóstico.
+         El titular es HTML fijo nuestro, por eso no pasa por esc(). */
+      '<h2 class="a-titular" id="aTitular" tabindex="-1">'+titular+'</h2>'+
+
+      '<div class="a-block">'+
+        '<h3>Lo que muestra tu rueda</h3>'+
+        '<p>Tu nivel de automatización es <b>'+avg.toFixed(1)+'/10</b> — una operación <b>'+nivel+'</b>, con '+dispTxt+'. '+
+        'Lo que mejor corre solo es <b>'+esc(hi.name)+'</b> ('+hi.score+'). Lo que más te frena es <b>'+esc(lo.name)+'</b> ('+lo.score+'). '+bajasTxt+'</p>'+
+      '</div>'+
+
+      '<div class="a-block">'+
+        '<h3>Lo que te está costando</h3>'+
+        '<div class="a-est"><span class="a-est-num">~'+horas+'</span><span class="a-est-lbl">horas / semana<br>a mano</span></div>'+
+        '<p>Con tu rueda en '+avg.toFixed(1)+'/10, hay alrededor de <b>'+horas+' horas por semana</b> de tu operación que dependen de que alguien las haga a mano. '+
+        'Son unas <b>'+(horas*4)+' horas al mes</b> que no le podés dedicar a contenido, a vender ni a tus clientes.</p>'+
+        '<p class="a-caveat">Es una estimación gruesa calculada solo a partir de tus puntajes — sirve para el orden de magnitud, no como número exacto. En la auditoría gratuita lo calculamos con tus procesos y tus números reales.</p>'+
+      '</div>'+
+
+      (brecha>0 ?
+      '<div class="a-block">'+
+        '<h3>Tu cuello de botella</h3>'+
+        '<p>Entre <b>'+esc(hi.name)+'</b> y <b>'+esc(lo.name)+'</b> hay <b>'+brecha+' puntos</b> de diferencia. '+
+        'Un negocio no crece al ritmo de su área más fuerte: crece al ritmo de la más débil. '+
+        'Por más que <b>'+esc(hi.name)+'</b> funcione perfecto, <b>'+esc(lo.name)+'</b> te marca el techo.</p>'+
+      '</div>' : '')+
+
+      '<div class="a-block">'+
+        '<h3>Tres preguntas para llevarte</h3>'+
+        '<ul class="qbox">'+
+          '<li>Si mañana entraran <b>el triple de clientes</b>, ¿qué es lo primero que se rompe? ¿Coincide con <b>'+esc(lo.name)+'</b>?</li>'+
+          '<li>¿Cuántas veces por semana hacés la misma tarea en <b>'+esc(lo.name)+'</b>? Todo lo que se repite igual, se automatiza.</li>'+
+          '<li>¿Esto sigue a mano por falta de tiempo, o porque nunca te sentaste a resolverlo de raíz?</li>'+
+        '</ul>'+
+      '</div>';
+
+    box.innerHTML = html;
+  }
+
+  // ---------- Compartir ----------
+  function shareWheel(){
+    var caption = "Acabo de medir cuánto de mi negocio todavía funciona a mano y me dejó pensando. ¿Cuánto del tuyo corre solo? Medilo acá 👉 "+CONFIG.shareUrl+"\n\n(Una herramienta de "+CONFIG.brandName+")";
+    var msgEl = document.getElementById("shareMsg");
+    function done(){
+      if(msgEl){ msgEl.textContent="¡Texto copiado! Pegalo en tu post."; setTimeout(function(){ msgEl.textContent=""; },4000); }
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(caption).then(done, function(){ if(msgEl) msgEl.textContent="Compartí: "+CONFIG.shareUrl; });
+    } else if(msgEl){ msgEl.textContent="Compartí: "+CONFIG.shareUrl; }
+  }
+
+  /* ============================================================
+     Animación: hacer rodar la rueda
+     ============================================================ */
+  var rollRAF = null;
+  function rollVerdict(range){
+    if(range<=1) return {t:"Tu operación rueda pareja.",  l:"Todo avanza al <b>mismo ritmo</b>. El próximo salto no es de balance: es de nivel."};
+    if(range<=3) return {t:"Rueda con un bache.",         l:"Avanzás bien, pero hay un punto que <b>frena al resto</b> cada vez que pasa por abajo."};
+    if(range<=5) return {t:"Rueda con bordes.",           l:"Avanzás <b>a los tropezones</b>. Cada cliente nuevo te cuesta más trabajo del que debería."};
+    return            {t:"Rueda muy despareja.",        l:"Vas <b>a los tumbos</b>. No es falta de trabajo — es falta de sistema."};
+  }
+  function runRoll(){
+    var canvas=document.getElementById("rollCanvas");
+    if(!canvas) return;
+    if(rollRAF){ cancelAnimationFrame(rollRAF); rollRAF=null; }
+
+    var N=state.areas.length, step=2*Math.PI/N, first=-Math.PI/2;
+    var hi=state.areas[0].score, lo=state.areas[0].score, sum=0;
+    state.areas.forEach(function(a){ if(a.score>hi)hi=a.score; if(a.score<lo)lo=a.score; sum+=a.score; });
+    var range=hi-lo, avgScore=sum/N;
+
+    var dpr=Math.max(1, Math.min(2, window.devicePixelRatio||1));
+    var cssW=canvas.clientWidth || 900;
+    var cssH=Math.max(230, Math.min(330, Math.round(cssW*0.34)));
+    canvas.style.height=cssH+"px";
+    canvas.width=Math.round(cssW*dpr);
+    canvas.height=Math.round(cssH*dpr);
+    var ctx=canvas.getContext("2d");
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    var groundY=cssH-34;
+    var RR=Math.min(110,(groundY-18)/2,cssH*0.34);
+    var scoreR=state.areas.map(function(a){return RR*a.score/10;});
+    var avgR=RR*avgScore/10;
+
+    // borde suave: interpola entre los radios de cada área
+    function rimR(alpha){
+      var twoPi=2*Math.PI;
+      var a=((alpha-(first+0.5*step))%twoPi+twoPi)%twoPi;
+      var idx=Math.floor(a/step);
+      var t=(a-idx*step)/step, sm=t*t*(3-2*t);
+      var r0=scoreR[idx%N], r1=scoreR[(idx+1)%N];
+      return r0+(r1-r0)*sm;
+    }
+    var DOTR=9;   // radio de los puntos de cada área (sobresalen del borde)
+    // punto más bajo respecto del eje (la rueda se apoya en su saliente)
+    function support(phi){
+      var m=0, pr;
+      for(var d=0; d<360; d+=4){
+        var w=d*Math.PI/180, sn=Math.sin(w);
+        if(sn<=0) continue;
+        pr=rimR(w-phi)*sn;
+        if(pr>m) m=pr;
+      }
+      // los puntos sobresalen del borde: la rueda también apoya sobre ellos
+      for(var i=0;i<N;i++){
+        pr=scoreR[i]*Math.sin(first+(i+0.5)*step+phi)+DOTR;
+        if(pr>m) m=pr;
+      }
+      return m;
+    }
+
+    // Cuánto sobresale la rueda hacia un lado (sign: -1 izquierda, +1 derecha).
+    // Como la rueda es despareja, el saliente depende de la rotación.
+    function reach(phi,sign){
+      var m=0, pr;
+      for(var d=0; d<360; d+=4){
+        var w=d*Math.PI/180, cs=Math.cos(w)*sign;
+        if(cs<=0) continue;
+        pr=rimR(w-phi)*cs;
+        if(pr>m) m=pr;
+      }
+      for(var i=0;i<N;i++){
+        pr=scoreR[i]*Math.cos(first+(i+0.5)*step+phi)*sign+DOTR;
+        if(pr>m) m=pr;
+      }
+      return m;
+    }
+
+    // Arranca pegada al borde izquierdo y frena pegada al derecho.
+    var visR=Math.max.apply(null, scoreR)+DOTR;
+    var xStart=reach(0,-1);
+    var x=xStart, phi=0, last=null, trail=[];
+    // ~5s para cruzar. El máximo evita que en pantallas muy angostas el
+    // recorrido dé cero o negativo y la rueda gire para siempre sin llegar.
+    var omega=Math.max(0.35, ((cssW-visR)-xStart)/(Math.max(avgR,RR*0.3)*5));
+
+    function drawStatic(){
+      ctx.clearRect(0,0,cssW,cssH);
+      ctx.fillStyle="#080809"; ctx.fillRect(0,0,cssW,groundY);
+      ctx.fillStyle="#131414"; ctx.fillRect(0,groundY,cssW,cssH-groundY);
+      ctx.strokeStyle="rgba(255,255,255,0.16)"; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.moveTo(0,groundY); ctx.lineTo(cssW,groundY); ctx.stroke();
+    }
+    function drawTrail(){
+      if(trail.length<2) return;
+      ctx.beginPath(); ctx.moveTo(trail[0].x,groundY);
+      trail.forEach(function(p){ ctx.lineTo(p.x,p.y); });
+      ctx.lineTo(trail[trail.length-1].x,groundY); ctx.closePath();
+      ctx.fillStyle="rgba(225,232,220,0.06)"; ctx.fill();
+      ctx.beginPath();
+      trail.forEach(function(p,i){ i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y); });
+      ctx.strokeStyle="rgba(225,232,220,0.5)"; ctx.lineWidth=2;
+      ctx.setLineDash([1,4]); ctx.lineCap="round"; ctx.stroke(); ctx.setLineDash([]);
+    }
+    function drawWheel(cx,cy,ph){
+      ctx.save();
+      ctx.beginPath(); ctx.rect(0,0,cssW,groundY); ctx.clip();
+      ctx.translate(cx,cy); ctx.rotate(ph);
+      ctx.beginPath();
+      for(var d=0; d<=360; d+=3){
+        var al=d*Math.PI/180, r=rimR(al);
+        var px=r*Math.cos(al), py=r*Math.sin(al);
+        d===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      var g=ctx.createLinearGradient(0,-RR,0,RR);
+      g.addColorStop(0,"rgba(225,232,220,0.16)"); g.addColorStop(1,"rgba(225,232,220,0.06)");
+      ctx.fillStyle=g; ctx.fill();
+      ctx.lineWidth=2.5; ctx.strokeStyle="rgba(255,255,255,0.75)"; ctx.stroke();
+      ctx.beginPath(); ctx.arc(0,0,avgR,0,2*Math.PI);
+      ctx.setLineDash([3,4]); ctx.lineWidth=1.5; ctx.strokeStyle="rgba(255,255,255,0.22)"; ctx.stroke(); ctx.setLineDash([]);
+      state.areas.forEach(function(a,i){
+        var mid=first+(i+0.5)*step, r=scoreR[i];
+        var ex=r*Math.cos(mid), ey=r*Math.sin(mid), col=seg(i).c;
+        ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(ex,ey);
+        ctx.strokeStyle=col; ctx.lineWidth=3; ctx.lineCap="round"; ctx.stroke();
+        ctx.beginPath(); ctx.arc(ex,ey,8,0,2*Math.PI); ctx.fillStyle=col; ctx.fill();
+        ctx.fillStyle="#0b0b0b"; ctx.font="700 10px Inter, sans-serif"; ctx.textAlign="center"; ctx.textBaseline="middle";
+        ctx.fillText(String(a.score),ex,ey);
+      });
+      ctx.beginPath(); ctx.arc(0,0,9,0,2*Math.PI); ctx.fillStyle="#0a0a0a"; ctx.fill();
+      ctx.lineWidth=2; ctx.strokeStyle="rgba(255,255,255,0.7)"; ctx.stroke();
+      ctx.restore();
+    }
+
+    function frame(ts){
+      if(last==null) last=ts;
+      var dt=Math.min(0.05,(ts-last)/1000); last=ts;
+      var dphi=omega*dt; phi+=dphi;
+      var sup=support(phi), cy=groundY-sup;
+      x += sup*dphi;                       // rueda sin resbalar
+      var limit = cssW - reach(phi,1);     // borde derecho, según cómo esté girada
+      var done = x>=limit;
+      if(done) x=limit;                    // termina exactamente sobre el borde
+      trail.push({x:x,y:cy});
+      drawStatic(); drawTrail(); drawWheel(x,cy,phi);
+      if(!done){ rollRAF=requestAnimationFrame(frame); } else { rollRAF=null; }
+    }
+    drawStatic(); last=null; rollRAF=requestAnimationFrame(frame);
+
+    var redondez=Math.round(100*(1-range/9));
+    var v=rollVerdict(range);
+    document.getElementById("rollVerdict").innerHTML=
+      '<p class="roll-redondez">Qué tan parejo rueda <span class="t-acc">'+redondez+'%</span></p>'+
+      '<p class="roll-line"><b>'+esc(v.t)+'</b> '+v.l+'</p>';
+  }
+
+  /* ============================================================
+     Soft gate + revelado del diagnóstico
+     ============================================================ */
+  var GATE_KEY = "flujo_rueda_unlocked";
+  function isUnlocked(){
+    try{ return sessionStorage.getItem(GATE_KEY)==="1"; }catch(e){ return false; }
+  }
+  function markUnlocked(){
+    try{ sessionStorage.setItem(GATE_KEY,"1"); }catch(e){}
+  }
+
+  function revealAnalysis(){
+    var wrap = document.getElementById("analysis");
+    var gate = document.getElementById("gate");
+    var btn  = document.getElementById("analyzeBtn");
+    gate.classList.remove("on");
+    gate.setAttribute("hidden","");
+    document.body.classList.remove("modal-open");
+    btn.style.display = "none";
+    wrap.removeAttribute("hidden");
+    wrap.classList.add("reveal-soft");
+
+    // El iframe del calendario se carga recién ahora (no antes)
+    var f = document.getElementById("calFrame");
+    if(f && !f.getAttribute("src")) f.setAttribute("src", f.getAttribute("data-src"));
+
+    renderAnalysis();
+    wrap.scrollIntoView({behavior:"smooth", block:"start"});
+    // Llevamos el foco al titular del diagnóstico: quien navega con teclado o
+    // lector de pantalla queda parado justo en el contenido que acaba de aparecer.
+    var tit = document.getElementById("aTitular");
+    if(tit) tit.focus({preventScroll:true});
+    if(window.dataLayer) window.dataLayer.push({event:"rueda_diagnostico_visto"});
+  }
+
+  function sendLead(lead){
+    if(!CONFIG.leadWebhook) return;   // sin webhook configurado: no hay a dónde mandarlo
+    var payload = {
+      nombre: lead.nombre,
+      apellido: lead.apellido,
+      email: lead.email,
+      telefono: lead.telefono,
+      caso: PRESET_LABEL[state.preset],
+      promedio: mean().toFixed(1),
+      areaMasBaja: extremes().lo.name,
+      areaMasAlta: extremes().hi.name,
+      resumen: resumen(),
+      areas: state.areas.map(function(a){ return {area:a.name, puntaje:a.score, nota:a.note}; }),
+      origen: "rueda-operaciones"
+    };
+    try{
+      fetch(CONFIG.leadWebhook, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload),
+        keepalive:true
+      }).catch(function(){});   // si falla, el usuario igual ve su diagnóstico
+    }catch(e){}
+  }
+
+  /* ---------- Modal ---------- */
+  var $gate = document.getElementById("gate"), lastFocus = null, hideTimer = null, listoTimer = null;
+
+  function isOpen(){ return !$gate.hasAttribute("hidden"); }
+
+  // El formulario avisó que ya se pintó (mandó su altura): sacamos el esqueleto.
+  function marcarFormListo(){
+    var sk = document.getElementById("formLoading");
+    var fr = document.getElementById("gateFrame");
+    if(sk) sk.setAttribute("hidden","");
+    if(fr) fr.classList.add("listo");
+    if(listoTimer){ clearTimeout(listoTimer); listoTimer = null; }
+  }
+  function mostrarEsqueleto(){
+    var sk = document.getElementById("formLoading");
+    var fr = document.getElementById("gateFrame");
+    if(sk) sk.removeAttribute("hidden");
+    if(fr) fr.classList.remove("listo");
+    // Red de seguridad: si el formulario nunca avisa (bloqueador, error de red),
+    // igual lo mostramos a los 12s en vez de dejar el esqueleto para siempre.
+    if(listoTimer) clearTimeout(listoTimer);
+    listoTimer = setTimeout(marcarFormListo, 12000);
+  }
+
+  function openModal(){
+    var f = document.getElementById("gateFrame");
+    if(!f.getAttribute("src")){ mostrarEsqueleto(); f.setAttribute("src", CONFIG.formSrc); }
+    // si veníamos de cerrar, cancelamos el ocultado pendiente:
+    // si no, a los 300ms el modal recién abierto se escondía solo.
+    if(hideTimer){ clearTimeout(hideTimer); hideTimer = null; }
+    lastFocus = document.activeElement;
+    $gate.removeAttribute("hidden");
+    document.body.classList.add("modal-open");
+    // el reflow hace que la transición de opacidad se vea
+    void $gate.offsetWidth;
+    $gate.classList.add("on");
+    setTimeout(function(){ document.getElementById("modalClose").focus(); }, 60);
+    if(window.dataLayer) window.dataLayer.push({event:"rueda_gate_visto"});
+  }
+  function closeModal(){
+    if(!isOpen()) return;
+    $gate.classList.remove("on");
+    document.body.classList.remove("modal-open");
+    if(hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){ $gate.setAttribute("hidden",""); hideTimer = null; }, 300);
+    // si no completó, le devolvemos el botón para reintentar
+    if(!isUnlocked()){ document.getElementById("analyzeBtn").style.display = "block"; }
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.getElementById("analyzeBtn").addEventListener("click", function(){
+    if(isUnlocked()){ revealAnalysis(); return; }
+    this.style.display = "none";   // el form tiene su propio botón: evitamos dos CTA iguales
+    openModal();
+  });
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  // clic en el fondo (fuera de la tarjeta) cierra
+  $gate.addEventListener("mousedown", function(ev){ if(ev.target === $gate) closeModal(); });
+
+  document.addEventListener("keydown", function(ev){
+    if(!isOpen()) return;
+    if(ev.key === "Escape"){ closeModal(); return; }
+    // Trampa de foco: con aria-modal="true" el tabulador no puede escaparse
+    // del diálogo hacia la página de atrás.
+    if(ev.key !== "Tab") return;
+    var f = Array.prototype.filter.call(
+      $gate.querySelectorAll('button, [href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])'),
+      function(el){ return !el.disabled && el.offsetParent !== null; }
+    );
+    if(!f.length) return;
+    var primero = f[0], ultimo = f[f.length-1];
+    if(ev.shiftKey && document.activeElement === primero){ ev.preventDefault(); ultimo.focus(); }
+    else if(!ev.shiftKey && document.activeElement === ultimo){ ev.preventDefault(); primero.focus(); }
+  });
+
+  // Lead capturado: guarda, cierra el modal y abre el diagnóstico.
+  function onLeadCaptured(lead){
+    if(isUnlocked()) return;             // evita dobles disparos
+    lead = lead || {};
+    var un = document.getElementById("userName");
+    if(!un.value.trim() && lead.nombre) un.value = lead.nombre;
+    sendLead(lead);
+    markUnlocked();
+    if(window.dataLayer) window.dataLayer.push({event:"rueda_lead_enviado"});
+    closeModal();
+    setTimeout(revealAnalysis, 260);
+  }
+
+  window.addEventListener("message", function(ev){
+    var d = ev.data;
+    var gateFrame = document.getElementById("gateFrame");
+
+    /* --- A) Formulario propio (rueda-formulario.html), mismo origen --- */
+    if(ev.origin === window.location.origin && d && typeof d === "object"){
+      if(d.type === "flujo-form-height" && typeof d.height === "number"){
+        if(gateFrame) gateFrame.style.height = Math.max(240, Math.min(1000, d.height)) + "px";
+        marcarFormListo();
+        return;
+      }
+      // rueda-gracias.html (vuelta del form de GHL) o el form propio
+      if(d.type === "flujo-lead"){ onLeadCaptured(d.lead); return; }
+    }
+
+    /* --- B) Formulario de GoHighLevel ---
+       OJO: el formulario y el calendario viven los DOS en leadconnectorhq.com,
+       así que filtrar por origen no alcanza — los mensajes de altura de uno
+       terminaban redimensionando al otro. Hay que mirar ev.source, que
+       identifica al iframe exacto que mandó el mensaje. */
+    if(!gateFrame || ev.source !== gateFrame.contentWindow) return;
+
+    // alto del iframe: "[iFrameSizer]ID:HEIGHT:WIDTH:event"
+    if(typeof d === "string" && d.indexOf("[iFrameSizer]") === 0){
+      var h = parseFloat(d.replace("[iFrameSizer]","").split(":")[1]);
+      if(!isNaN(h) && h > 120){ gateFrame.style.height = Math.min(900, h) + "px"; marcarFormListo(); }
+      return;
+    }
+    // GHL avisa el submit con distintos nombres según la versión del embed
+    var evt = (d && (d.type || d.event || d.action)) || "";
+    if(typeof evt === "string" && /submit|form.*complet|lead/i.test(evt)){
+      onLeadCaptured((d && (d.payload || d.data)) || {});
+    }
+  });
+
+  document.getElementById("gateSkip").addEventListener("click", function(){
+    markUnlocked();
+    closeModal();
+    setTimeout(revealAnalysis, 260);
+  });
+
+  // ---------- Acciones globales ----------
+  // Cambiar de caso reescribe las áreas: si el usuario ya puntuó o escribió
+  // notas, avisamos antes de borrárselo (el botón Reiniciar ya lo hacía).
+  var presetPrevio = $preset.value;
+  function hayTrabajo(){
+    var original = PRESETS[state.preset] || [];
+    return state.areas.some(function(a,i){
+      // renombrar un área también es trabajo: antes sólo miraba puntajes y notas,
+      // así que cambiar de caso te borraba los nombres sin avisar.
+      return a.score !== DEFAULT_SCORE || a.note || a.name !== original[i];
+    }) || state.areas.length !== original.length;
+  }
+  $preset.addEventListener("change", function(){
+    if(hayTrabajo() && !window.confirm("¿Cambiar de caso? Se pierden los puntajes y las notas que cargaste.")){
+      $preset.value = presetPrevio;
+      return;
+    }
+    presetPrevio = $preset.value;
+    loadPreset($preset.value);
+    renderAreas(); renderWheel(true); updateReading();
+  });
+  $addArea.addEventListener("click", addArea);
+  document.getElementById("reset").addEventListener("click", function(){
+    if(window.confirm("¿Reiniciar la rueda? Se pierden los puntajes y las notas actuales.")){
+      loadPreset($preset.value);
+      renderAreas(); renderWheel(true); updateReading();
+    }
+  });
+  document.getElementById("print").addEventListener("click", function(){ window.print(); });
+  document.getElementById("shareBtn").addEventListener("click", shareWheel);
+
+  document.getElementById("rollBtn").addEventListener("click", function(){
+    var panel=document.getElementById("rollPanel");
+    panel.removeAttribute("hidden");
+    this.style.display="none";
+    runRoll();
+    panel.scrollIntoView({behavior:"smooth", block:"center"});
+  });
+  document.getElementById("rollAgain").addEventListener("click", runRoll);
+  document.getElementById("rollClose").addEventListener("click", function(){
+    if(rollRAF){ cancelAnimationFrame(rollRAF); rollRAF=null; }
+    document.getElementById("rollPanel").setAttribute("hidden","");
+    document.getElementById("rollBtn").style.display="block";
+  });
+
+  // ---------- Init ----------
+  document.getElementById("igBtn").setAttribute("href", CONFIG.instagram);
+  document.getElementById("calFrame").setAttribute("data-src", CONFIG.booking);
+  document.getElementById("y").textContent = new Date().getFullYear();
+
+  (function(){
+    var d=new Date(), meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    document.getElementById("userDate").textContent = d.getDate()+" de "+meses[d.getMonth()]+" de "+d.getFullYear();
+  })();
+
+  document.getElementById("userName").addEventListener("input", renderAnalysis);
+
+  // $preset.value y no "solo" fijo: algunos navegadores (Firefox) restauran el
+  // valor del <select> al recargar, y ahí el desplegable decía "Equipo" mientras
+  // las áreas cargadas eran las de "Emprendedor".
+  loadPreset(PRESETS[$preset.value] ? $preset.value : "solo");
+  presetPrevio = $preset.value;
+  renderAreas();
+  renderWheel(true);
+  updateReading();
+
+  // Si volvés desde un form nativo de GHL con ?ok=1, mostramos el diagnóstico directo
+  if(/[?&]ok=1(&|$)/.test(window.location.search)){ markUnlocked(); revealAnalysis(); }
+})();
+
+/* ============================================================
+   Auto-resize del iframe del calendario (LeadConnector / GoHighLevel).
+   Mismo mecanismo que index.html: escucha los dos formatos de
+   postMessage que manda la app del calendario y ajusta la altura.
+   ============================================================ */
+(function(){
+  function parseHeight(d){
+    if(typeof d === "string" && d.indexOf("[iFrameSizer]") === 0){
+      var parts = d.replace("[iFrameSizer]","").split(":");
+      var h = parseFloat(parts[1]);
+      if(!isNaN(h) && h > 200) return h;
+    }
+    if(Array.isArray(d) && d.length >= 2 && d[0] === "highlevel.setHeight"){
+      var hh = d[1] && d[1].height;
+      if(typeof hh === "number" && hh > 200) return hh;
+    }
+    return null;
+  }
+  window.addEventListener("message", function(ev){
+    var iframe = document.getElementById("calFrame");
+    if(!iframe) return;
+    // Igual que arriba: el formulario de GHL manda el MISMO tipo de mensaje
+    // desde el MISMO dominio. Sin este chequeo, abrir el formulario le
+    // cambiaba la altura al calendario (y al revés).
+    if(ev.source !== iframe.contentWindow) return;
+    var h = parseHeight(ev.data);
+    if(h == null) return;
+    iframe.style.setProperty("height", h + "px", "important");
+    iframe.style.setProperty("min-height", h + "px", "important");
+  });
+})();
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+
+<!-- ============================================================
+     Chat widget de GHL: SACADO a propósito de esta página.
+     El mensaje automático que abre solo tapaba las tarjetas de área
+     y competía con el CTA en una herramienta que ya tiene un solo
+     objetivo (completar la rueda y reservar la auditoría).
+
+     Sigue activo en index.html, que es donde capta.
+
+     Ojo: el TEXTO del mensaje no vive en el código — se edita en
+     GoHighLevel → Sites → Chat Widget → mensaje de bienvenida.
+     Si lo querés cambiar en todo el sitio, es ahí.
+
+     Para volver a ponerlo acá, descomentá esto:
+<script src="https://beta.leadconnectorhq.com/loader.js" data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a1f462a1ce15bb9e94f4a4f"></script>
+     ============================================================ -->
+</body>
+</html>

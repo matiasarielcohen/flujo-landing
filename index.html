@@ -69,6 +69,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  /* Tailwind trae su propia utilidad .font-serif (ui-serif/Georgia) y la
+     inyecta DESPUÉS del <style> de abajo. Con la misma especificidad, gana
+     la última: por eso el acento de los títulos venía saliendo en Georgia
+     y no en Instrument Serif, aunque la fuente sí se descargaba.
+     Configurando el tema, la .font-serif de Tailwind ya sale con la fuente
+     correcta y no hace falta pelear la cascada. */
+  tailwind.config = { theme: { extend: { fontFamily: { serif: ['Instrument Serif', 'serif'] } } } };
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
