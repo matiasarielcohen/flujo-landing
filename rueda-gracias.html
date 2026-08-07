@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="b">
-  <p>Listo, recibimos tus datos.<br><span id="fallback" hidden>Podés <a href="rueda-operaciones.html?ok=1">volver a tu diagnóstico</a>.</span></p>
+  <p>Listo, recibimos tus datos.<br><span id="fallback" hidden>Podés <a href="rueda-operaciones?ok=1">volver a tu diagnóstico</a>.</span></p>
 </div>
 
 <!-- ============================================================
@@ -30,7 +30,11 @@
      y la rueda cierra el pop-up y abre el diagnóstico.
 
      En GHL: Sites → Forms → tu form → Settings → On Submit →
-             Redirect to URL → https://flujo.com.ar/rueda-gracias.html
+             Redirect to URL → https://flujo.com.ar/rueda-gracias
+
+     (Con cleanUrls activado en vercel.json andan las dos formas: la
+      versión con .html redirige 301 a ésta. Sirve igual si ya la
+      cargaste con la extensión.)
      ============================================================ -->
 <script>
 (function(){
