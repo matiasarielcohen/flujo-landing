@@ -1,25 +1,7 @@
 # STATE — flujo-landing
 
-## 2026-08-31 — 9 staged brand-asset changes, uncommitted
+## 2026-09-18 — Ported hero glow, shimmer, accent panels to funnel pages
 
-Live site repo (`origin`: `matiasarielcohen/flujo-landing`, branch `main`).
-Last commit `4822b13` on 2026-08-07.
-
-HEAD equals the **local** `origin/main` ref (0 ahead, 0 behind) — but there is no
-`FETCH_HEAD`, so that ref dates from the clone and has never been refreshed. Whether the
-GitHub remote has moved since is **unknown without a `git fetch`**; don't assume it hasn't.
-
-**There are 9 files staged but never committed** (0 unstaged, 0 untracked): the `@4x`
-brand assets were swapped from PNG to JPG and the three logo SVGs edited.
-
-```
-3 A  brand_assets/*@4x.jpg          (added)
-3 D  brand_assets/*@4x.png          (deleted)
-3 M  brand_assets/*.svg             (modified)
-```
-
-- **Next:** decide whether that swap is intended, then commit and push it — or reset it.
-  It has been sitting in the index since before 2026-08-31 and is the only pending work here.
-- **Open question:** was the PNG→JPG change deliberate? JPG has no transparency, which
-  usually matters for a logo. Confirm before committing.
-- Deploys on Vercel with `cleanUrls` (URLs have no `.html`), per commit `40834a7`.
+onboarding.html and confirmacion.html now carry index.html's animated hero glow (drifting clouds, breathing radial, shimmer text) and an accent-colored flagship panel, on top of the earlier grey/panel-texture pass. All 4 shared-design-system files (index, onboarding, confirmacion, rueda-operaciones) are visually verified via puppeteer, no overflow issues.
+- **Next:** Mati reviews in browser, then decide whether to commit (still nothing committed — carries forward the prior uncommitted Tailwind-migration/WhatsApp-data open items too).
+Detail: [log/2026-09-18-ported-hero-glow-shimmer-accent-panels-to-funnel.md](log/2026-09-18-ported-hero-glow-shimmer-accent-panels-to-funnel.md)

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flujo — Reserva confirmada</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+
+<!-- Google Tag Manager — mismo container que index.html: esta es la página de
+     conversión del funnel (reserva confirmada), no puede quedar sin tracking. -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M924S8XC');</script>
+<!-- End Google Tag Manager -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     Mismo sistema de diseño que index.html — clases y valores
+     copiados literales (panel, chip, section-eyebrow, section-title,
+     dim, font-serif, btn-white, faq-item). No se tocó index.html.
+     ============================================================ -->
+<style>
+  html,body{background:#000;color:#e9e9ea;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  .font-display{font-family:'Inter',sans-serif;letter-spacing:-0.035em;}
+  .font-serif{font-family:'Instrument Serif',serif;letter-spacing:-0.01em;}
+  .page-bg{
+    background:
+      radial-gradient(60% 40% at 50% 0%, rgba(40,42,40,0.5) 0%, rgba(0,0,0,0) 70%),
+      #000;
+  }
+  .panel{
+    background:linear-gradient(180deg,#151515 0%, #0a0a0a 100%);
+    border:1px solid rgba(255,255,255,0.09);
+    border-radius:28px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .grain{
+    position:absolute;inset:0;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+  .dim{color:rgba(255,255,255,0.45);}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);font-size:12px;color:rgba(255,255,255,0.7);}
+  .section-title{font-size:56px;line-height:1.05;letter-spacing:-0.035em;font-weight:600;color:#fff;}
+  .section-eyebrow{text-transform:uppercase;letter-spacing:0.18em;font-size:11px;color:rgba(255,255,255,0.6);}
+  .btn-white{background:#ffffff;color:#0a0a0a;transition:background .2s,transform .2s;}
+  .btn-white:hover{background:#f1f1f1;transform:translateY(-1px);}
+
+  /* Glow del hero — mismas nubes animadas + respiro que .hero-panel de index.html,
+     a escala de esta página (sin la caja de 760px del hero grande). */
+  .hero-glow-wrap{
+    position:relative; overflow:hidden; border-radius:28px;
+    margin:-32px -28px -8px -28px; padding:32px 28px 8px 28px;
+  }
+  .hero-glow-wrap::before{
+    content:"";
+    position:absolute;
+    inset:-20%;
+    pointer-events:none;
+    background: radial-gradient(40% 35% at 72% 35%, rgba(225,232,220,0.20) 0%, transparent 70%);
+    animation: heroBreathe 3s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes heroBreathe{
+    0%,100% { opacity: 0.35; transform: scale(0.92) translate(40px, -30px); }
+    25%     { opacity: 0.75; transform: scale(1.08) translate(-50px, 25px); }
+    50%     { opacity: 1;    transform: scale(1.20) translate(-70px, 50px); }
+    75%     { opacity: 0.7;  transform: scale(1.05) translate(30px, 40px); }
+  }
+  .hero-cloud{
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(50px);
+    will-change: transform, opacity;
+    z-index: 0;
+  }
+  .hero-cloud-1{
+    width: 380px; height: 280px;
+    right: -60px; top: -60px;
+    background: radial-gradient(closest-side, rgba(225,232,220,0.30), transparent 70%);
+    animation: cloudDrift1 14s ease-in-out infinite;
+  }
+  .hero-cloud-2{
+    width: 300px; height: 240px;
+    left: -60px; bottom: -40px;
+    background: radial-gradient(closest-side, rgba(230,235,220,0.20), transparent 75%);
+    animation: cloudDrift2 16s ease-in-out infinite;
+  }
+  @keyframes cloudDrift1{
+    0%   { transform: translate(0, 0)          scale(1);    opacity: .55; }
+    20%  { transform: translate(-90px, 30px)   scale(1.15); opacity: .9;  }
+    40%  { transform: translate(-170px, 10px)  scale(1.05); opacity: 1;   }
+    60%  { transform: translate(-130px, 65px)  scale(1.25); opacity: .85; }
+    80%  { transform: translate(-55px, 50px)   scale(1.1);  opacity: .7;  }
+    100% { transform: translate(0, 0)          scale(1);    opacity: .55; }
+  }
+  @keyframes cloudDrift2{
+    0%   { transform: translate(0, 0)          scale(1);    opacity: .45; }
+    25%  { transform: translate(55px, 45px)    scale(1.2);  opacity: .85; }
+    50%  { transform: translate(-60px, 75px)   scale(1.35); opacity: 1;   }
+    75%  { transform: translate(-130px, 25px)  scale(1.1);  opacity: .8;  }
+    100% { transform: translate(0, 0)          scale(1);    opacity: .45; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-glow-wrap::before, .hero-cloud{ animation: none !important; }
+  }
+  /* Shimmer — mismo brillo que recorre "por WhatsApp" en el hero de index.html */
+  .shimmer-word{
+    background: linear-gradient(90deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,1) 45%, rgba(255,255,255,0.55) 90%);
+    background-size: 200% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation: shimmer 5s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+  @media (prefers-reduced-motion: reduce){
+    .shimmer-word{ animation: none !important; -webkit-background-clip:initial;background-clip:initial;color:#fff; }
+  }
+
+  /* Reveal + fade-in — idéntico a index.html */
+  .reveal{
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  /* rv-soft — stagger sutil de hijos, idéntico al de index.html */
+  [class*="rv-"] > *{
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    transition: opacity .85s cubic-bezier(0.16, 1, 0.3, 1), transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--rv-i, 0) * var(--rv-step, 90ms) + var(--rv-base, 80ms));
+    will-change: opacity, transform;
+  }
+  [class*="rv-"].is-visible > *{ opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal, [class*="rv-"] > *{ opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+  .fade-in{opacity:0;animation:fadeIn .9s ease forwards;}
+  .fade-in.d1{animation-delay:.1s;}
+  .fade-in.d2{animation-delay:.25s;}
+  .fade-in.d3{animation-delay:.4s;}
+  .fade-in.d4{animation-delay:.55s;}
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    .fade-in{ animation: none !important; opacity: 1 !important; }
+    .badge-ok-dot{ animation: none !important; box-shadow: none !important; }
+  }
+
+  /* Scroll progress bar — idéntico a index.html. Esta página apila 5 paneles;
+     ayuda a orientarse mientras se desplaza. */
+  #scroll-progress-track{
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    background: rgba(255,255,255,0.04); z-index: 9999; pointer-events: none;
+  }
+  #scroll-progress-bar{
+    height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(0);
+    background: linear-gradient(90deg, rgba(225,232,220,0.55) 0%, rgba(225,232,220,0.95) 60%, #ffffff 100%);
+    box-shadow: 0 0 12px rgba(225,232,220,0.35);
+    will-change: transform;
+  }
+
+  /* Mismo tono de acento que el resto del sitio (glow del hero, dot activo
+     de la tabla A/B) — no un verde inventado. El punto respira una vez:
+     es el único momento animado no disparado por el usuario en esta página. */
+  .badge-ok{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+    color:rgb(225,232,220);
+    background:rgba(225,232,220,0.10);border:1px solid rgba(225,232,220,0.28);
+    border-radius:999px;padding:7px 14px;
+  }
+  .badge-ok .badge-ok-dot{
+    width:6px;height:6px;border-radius:999px;background:rgb(225,232,220);
+    box-shadow:0 0 0 0 rgba(225,232,220,0.5);
+    animation: badgeOkPulse 2.6s ease-in-out 1.2s 3;
+  }
+  @keyframes badgeOkPulse{
+    0%,100%{ box-shadow:0 0 0 0 rgba(225,232,220,0.5); }
+    50%{ box-shadow:0 0 0 6px rgba(225,232,220,0); }
+  }
+
+  /* FAQ — idéntico a index.html */
+  .faq-item{border-top:1px solid rgba(255,255,255,0.07);}
+  .faq-item:first-child{border-top:none;}
+  .faq-item:last-child{border-bottom:1px solid rgba(255,255,255,0.07);}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;cursor:pointer;width:100%;background:none;border:0;text-align:left;color:inherit;font:inherit;}
+  .faq-a-wrap{
+    display:grid;
+    grid-template-rows:0fr;
+    opacity:0;
+    transition:grid-template-rows .42s cubic-bezier(0.16,1,0.3,1), opacity .32s ease;
+  }
+  .faq-a-wrap > .faq-a-inner{ overflow:hidden; min-height:0; }
+  .faq-a{padding:0 0 24px 0;color:rgba(255,255,255,0.6);max-width:700px;line-height:1.7;}
+  .faq-item.is-open .faq-a-wrap{ grid-template-rows:1fr; opacity:1; }
+  .faq-icon{transition:transform .35s cubic-bezier(0.16,1,0.3,1);}
+  .faq-item.is-open .faq-icon{transform:rotate(45deg);}
+
+  /* Video embed — mismo tratamiento sin chrome propio que .cal-embed */
+  .video-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#121212 0%, #0a0a0a 100%);border:1px solid rgba(255,255,255,0.12);}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+  .video-placeholder{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;text-align:center;padding:24px;color:rgba(255,255,255,0.6);
+  }
+  .video-placeholder .ico{font-size:26px;}
+  .video-placeholder strong{color:rgba(255,255,255,0.7);font-size:13px;font-weight:600;}
+  .video-placeholder span{font-size:12px;max-width:36ch;line-height:1.5;}
+  .video-placeholder code{background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:5px;font-size:11px;}
+  /* Sin video cargado, el 16:9 estricto recorta el texto del placeholder en
+     pantallas chicas (overflow:hidden). Con video real puesto, esta clase se
+     saca por JS y vuelve al 16:9 normal. */
+  @media (max-width: 420px){
+    .video-frame.is-placeholder{ aspect-ratio: auto; min-height: 230px; }
+  }
+
+  @media (max-width: 768px){
+    .section-title{ font-size: 32px !important; line-height: 1.08 !important; }
+    .section-eyebrow{ font-size: 10px; }
+    .btn-white:hover{ transform: none !important; }
+    #faq-panel, .panel{ padding: 22px !important; border-radius: 20px; }
+  }
+  @media (max-width: 380px){
+    .section-title{ font-size: 28px !important; }
+  }
+</style>
+</head>
+<body class="page-bg min-h-screen">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M924S8XC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Sin JS, el sistema de reveal-on-scroll dejaría todo el contenido en opacity:0 para siempre. -->
+<noscript><style>.reveal, [class*="rv-"] > *{ opacity:1 !important; transform:none !important; }</style></noscript>
+
+<div id="scroll-progress-track" aria-hidden="true">
+  <div id="scroll-progress-bar"></div>
+</div>
+
+<main class="w-full flex flex-col items-center px-6 pt-10 pb-16">
+  <div class="w-full max-w-[760px] flex flex-col gap-6">
+
+    <a href="https://flujo.com.ar" class="inline-flex items-center self-start p-1 -m-1 transition-transform duration-200 hover:scale-[1.03] fade-in" aria-label="Flujo — Inicio">
+      <img src="brand_assets/Flujo Logo Principal.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="48" class="h-10 w-auto block select-none" draggable="false"/>
+    </a>
+
+    <div class="hero-glow-wrap fade-in d1">
+      <div class="hero-cloud hero-cloud-1" aria-hidden="true"></div>
+      <div class="hero-cloud hero-cloud-2" aria-hidden="true"></div>
+      <div class="relative" style="z-index:1;">
+        <span class="badge-ok mb-4">
+          <span class="badge-ok-dot" aria-hidden="true"></span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Reserva confirmada
+        </span>
+        <h1 class="section-title max-w-[640px] mb-4 mt-4">Listo. <span class="dim">Te esperamos en la llamada —</span> <span class="font-serif italic shimmer-word">mientras tanto, mirá esto.</span></h1>
+        <p class="text-white/60 text-[15px] max-w-[58ch] leading-relaxed">Ya te mandamos la confirmación por mail y WhatsApp, con el horario y el link de la videollamada. Guardala ahí: si necesitás cambiar el día, desde ese mismo mail podés reprogramarla.</p>
+        <p class="text-white/50 text-[13.5px] max-w-[58ch] leading-relaxed mt-2">Recomendación: agregá un recordatorio en tu calendario — es lo que más baja las ausencias.</p>
+      </div>
+    </div>
+
+    <!-- Video -->
+    <div class="panel p-8 sm:p-10 relative overflow-hidden fade-in d2">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="section-eyebrow mb-3">Antes de la llamada</div>
+      <h2 class="text-white text-[22px] font-semibold tracking-tight mb-2">Mirá este video — 2 minutos</h2>
+      <p class="text-white/60 text-[14.5px] mb-6 max-w-[58ch] leading-relaxed">Te contamos qué vas a encontrar en la auditoría y cómo llegar con todo lo necesario para aprovechar los 30 minutos al máximo.</p>
+      <div class="video-frame is-placeholder" id="videoFrame">
+        <div class="video-placeholder" id="videoPlaceholder">
+          <span class="ico" aria-hidden="true">🎬</span>
+          <strong>Video en camino</strong>
+          <span>Mientras tanto, mirá lo que sigue: qué vas a obtener y cómo prepararte.</span>
+        </div>
+      </div>
+      <!-- Para activar el video: pegá el link EMBED en CONFIG.videoUrl al final de este
+           archivo (YouTube/Loom/Wistia). Ver bloque CONFIGURACIÓN en el <script>. -->
+    </div>
+
+    <!-- Qué vas a obtener -->
+    <div class="panel p-8 sm:p-10 relative overflow-hidden reveal" style="background:
+      radial-gradient(50% 60% at 50% 20%, rgba(225,232,220,0.14) 0%, rgba(0,0,0,0) 70%),
+      linear-gradient(180deg,#151515,#0a0a0a);">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="section-eyebrow mb-3">Qué vas a obtener en estos 30 minutos</div>
+      <h2 class="text-white text-[22px] font-semibold tracking-tight mb-5">Tu auditoría, en 3 números concretos</h2>
+      <ul class="space-y-4 text-white/70 text-[15px] rv-soft">
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Cuánto te está costando hoy tu operación manual (USD/mes)</li>
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Cuántas horas semanales recuperás con automatización</li>
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Cuánto podés crecer en los próximos 90 días</li>
+      </ul>
+    </div>
+
+    <!-- Cómo prepararte -->
+    <div class="panel p-8 sm:p-10 relative overflow-hidden reveal">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="section-eyebrow mb-3">Para llegar con todo</div>
+      <h2 class="text-white text-[22px] font-semibold tracking-tight mb-5">Cómo prepararte</h2>
+      <ul class="space-y-4 text-white/70 text-[15px] rv-soft">
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Tené a mano un número aproximado de mensajes o pedidos que manejás por semana</li>
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pensá qué tareas repetitivas te comen más horas hoy (WhatsApp, pedidos, seguimiento de clientes)</li>
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Sumá a la llamada a quien tome la decisión — así avanzamos sin ida y vuelta después</li>
+      </ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="panel p-8 sm:p-10 relative overflow-hidden reveal" id="faq-panel">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="section-eyebrow mb-3">Preguntas frecuentes</div>
+      <h2 class="text-white text-[22px] font-semibold tracking-tight mb-2">Antes de que preguntes</h2>
+
+      <div class="mt-4" data-faq-group role="region" aria-label="Preguntas frecuentes">
+        <div class="faq-item is-open" data-faq>
+          <button type="button" class="faq-q" aria-expanded="true" aria-controls="faq-a-1" id="faq-q-1">
+            <span class="text-white text-[16px] font-medium">¿Cuánto dura la llamada y tiene costo?</span>
+            <span class="faq-icon text-white/60 flex-none" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a-wrap" id="faq-a-1" role="region" aria-labelledby="faq-q-1"><div class="faq-a-inner"><div class="faq-a">Dura 30 minutos y es completamente gratuita, sin compromiso. Es una auditoría real: salís con los 3 números aunque no avancemos juntos después.</div></div></div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-2" id="faq-q-2">
+            <span class="text-white text-[16px] font-medium">¿Necesito preparar algo técnico?</span>
+            <span class="faq-icon text-white/60 flex-none" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a-wrap" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><div class="faq-a-inner"><div class="faq-a">No. Alcanza con que conozcas a grandes rasgos tu operación diaria — el resto lo armamos en la llamada.</div></div></div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3">
+            <span class="text-white text-[16px] font-medium">¿Quién me atiende?</span>
+            <span class="faq-icon text-white/60 flex-none" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a-wrap" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><div class="faq-a-inner"><div class="faq-a">Un especialista de Flujo enfocado en automatización de negocios digitales, no un vendedor genérico.</div></div></div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-4" id="faq-q-4">
+            <span class="text-white text-[16px] font-medium">¿Qué pasa si no puedo llegar a esa hora?</span>
+            <span class="faq-icon text-white/60 flex-none" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a-wrap" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><div class="faq-a-inner"><div class="faq-a">Reprogramala sin drama desde el link que te llegó por mail o WhatsApp. Preferimos moverla antes que perderla.</div></div></div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-5" id="faq-q-5">
+            <span class="text-white text-[16px] font-medium">¿Qué pasa después de la llamada?</span>
+            <span class="faq-icon text-white/60 flex-none" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a-wrap" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><div class="faq-a-inner"><div class="faq-a">Si tiene sentido seguir, te armamos una propuesta con alcance y cronograma de 30 días. Si no, te quedás igual con el diagnóstico.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4 reveal">
+      <a href="https://flujo.com.ar" class="text-white/50 text-[13px] underline hover:text-white/70 transition-colors">Volver a flujo.com.ar</a>
+    </div>
+
+    <p class="text-white/60 text-[12px] text-center max-w-[56ch] mx-auto">¿Necesitás escribirnos antes? Respondé el mail de confirmación y te contestamos ahí.</p>
+  </div>
+</main>
+
+<script>
+  /* Scroll progress bar — idéntico al de index.html, pero se detiene al converger
+     y no anima si el usuario pidió menos movimiento. */
+  (function(){
+    const bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let target = 0, current = 0, rafId = null;
+    const LERP = 0.18;
+    function calcTarget(){
+      const doc = document.documentElement;
+      const max = (doc.scrollHeight - window.innerHeight) || 1;
+      const y = window.scrollY || doc.scrollTop || 0;
+      target = Math.min(1, Math.max(0, y / max));
+    }
+    function tick(){
+      current += (target - current) * LERP;
+      if (Math.abs(target - current) < 0.0005){
+        current = target;
+        bar.style.transform = `scaleX(${current})`;
+        rafId = null;
+        return;
+      }
+      bar.style.transform = `scaleX(${current})`;
+      rafId = requestAnimationFrame(tick);
+    }
+    function kick(){
+      calcTarget();
+      if (reduceMotion){ bar.style.transform = `scaleX(${target})`; return; }
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    }
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', kick, { passive: true });
+    kick();
+  })();
+
+  /* Scroll reveal — idéntico al de index.html, con soporte rv-soft (stagger de hijos) */
+  (function(){
+    document.querySelectorAll('.rv-soft').forEach(container => {
+      container.style.setProperty('--rv-step', '70ms');
+      Array.from(container.children).forEach((c, i) => c.style.setProperty('--rv-i', i));
+    });
+    if (!('IntersectionObserver' in window)){
+      document.querySelectorAll('.reveal, [class*="rv-"]').forEach(e => e.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, [class*="rv-"]').forEach(el => io.observe(el));
+  })();
+
+  /* FAQ accordion — idéntico al de index.html: solo una abierta, con aria-expanded sincronizado */
+  (function(){
+    const items = document.querySelectorAll('[data-faq]');
+    function setExpanded(item, expanded){
+      const b = item.querySelector('.faq-q');
+      if (b) b.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-q');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const wasOpen = item.classList.contains('is-open');
+        items.forEach(o => { o.classList.remove('is-open'); setExpanded(o, false); });
+        if (!wasOpen){ item.classList.add('is-open'); setExpanded(item, true); }
+      });
+    });
+  })();
+
+  /* ======================= CONFIGURACIÓN =======================
+     Editá SOLO este bloque para activar el video.
+     Pegá acá el link EMBED (no el link normal) de YouTube/Loom/Wistia:
+       YouTube: https://www.youtube.com/embed/VIDEO_ID
+       Loom:    https://www.loom.com/embed/VIDEO_ID
+       Wistia:  https://fast.wistia.net/embed/iframe/VIDEO_ID
+     ============================================================= */
+  (function(){
+    "use strict";
+    var CONFIG = { videoUrl: "" };
+
+    if(CONFIG.videoUrl){
+      var f = document.getElementById("videoFrame");
+      var ph = document.getElementById("videoPlaceholder");
+      var iframe = document.createElement("iframe");
+      iframe.src = CONFIG.videoUrl;
+      iframe.title = "Video de bienvenida";
+      iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+      iframe.allowFullscreen = true;
+      if(ph) ph.remove();
+      f.classList.remove("is-placeholder");
+      f.appendChild(iframe);
+    }
+  })();
+</script>
+</body>
+</html>

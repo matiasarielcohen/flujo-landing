@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flujo — Onboarding</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+
+<!-- Google Tag Manager — mismo container que index.html: sin esto, esta página del
+     funnel (onboarding survey) queda ciega para las conversiones. -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M924S8XC');</script>
+<!-- End Google Tag Manager -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     Todo lo de abajo está copiado literal de index.html (mismas
+     clases, mismos valores) para que esta página sea el mismo
+     sistema de diseño, no una aproximación. No se tocó index.html.
+     ============================================================ -->
+<style>
+  html,body{background:#000;color:#e9e9ea;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  .font-display{font-family:'Inter',sans-serif;letter-spacing:-0.035em;}
+  .font-serif{font-family:'Instrument Serif',serif;letter-spacing:-0.01em;}
+  .page-bg{
+    background:
+      radial-gradient(60% 40% at 50% 0%, rgba(40,42,40,0.5) 0%, rgba(0,0,0,0) 70%),
+      #000;
+  }
+  .panel{
+    background:linear-gradient(180deg,#151515 0%, #0a0a0a 100%);
+    border:1px solid rgba(255,255,255,0.09);
+    border-radius:28px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .dim{color:rgba(255,255,255,0.45);}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);font-size:12px;color:rgba(255,255,255,0.7);}
+  .section-title{font-size:56px;line-height:1.05;letter-spacing:-0.035em;font-weight:600;color:#fff;}
+  .section-eyebrow{text-transform:uppercase;letter-spacing:0.18em;font-size:11px;color:rgba(255,255,255,0.6);}
+  .btn-white{background:#ffffff;color:#0a0a0a;transition:background .2s,transform .2s;}
+  .btn-white:hover{background:#f1f1f1;transform:translateY(-1px);}
+
+  /* Glow del hero — mismas nubes animadas + respiro que .hero-panel de index.html,
+     a escala de esta página (sin la caja de 760px del hero grande). */
+  .hero-glow-wrap{
+    position:relative; overflow:hidden; border-radius:28px;
+    margin:-32px -28px -8px -28px; padding:32px 28px 8px 28px;
+  }
+  .hero-glow-wrap::before{
+    content:"";
+    position:absolute;
+    inset:-20%;
+    pointer-events:none;
+    background: radial-gradient(40% 35% at 72% 35%, rgba(225,232,220,0.20) 0%, transparent 70%);
+    animation: heroBreathe 3s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes heroBreathe{
+    0%,100% { opacity: 0.35; transform: scale(0.92) translate(40px, -30px); }
+    25%     { opacity: 0.75; transform: scale(1.08) translate(-50px, 25px); }
+    50%     { opacity: 1;    transform: scale(1.20) translate(-70px, 50px); }
+    75%     { opacity: 0.7;  transform: scale(1.05) translate(30px, 40px); }
+  }
+  .hero-cloud{
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(50px);
+    will-change: transform, opacity;
+    z-index: 0;
+  }
+  .hero-cloud-1{
+    width: 380px; height: 280px;
+    right: -60px; top: -60px;
+    background: radial-gradient(closest-side, rgba(225,232,220,0.30), transparent 70%);
+    animation: cloudDrift1 14s ease-in-out infinite;
+  }
+  .hero-cloud-2{
+    width: 300px; height: 240px;
+    left: -60px; bottom: -40px;
+    background: radial-gradient(closest-side, rgba(230,235,220,0.20), transparent 75%);
+    animation: cloudDrift2 16s ease-in-out infinite;
+  }
+  @keyframes cloudDrift1{
+    0%   { transform: translate(0, 0)          scale(1);    opacity: .55; }
+    20%  { transform: translate(-90px, 30px)   scale(1.15); opacity: .9;  }
+    40%  { transform: translate(-170px, 10px)  scale(1.05); opacity: 1;   }
+    60%  { transform: translate(-130px, 65px)  scale(1.25); opacity: .85; }
+    80%  { transform: translate(-55px, 50px)   scale(1.1);  opacity: .7;  }
+    100% { transform: translate(0, 0)          scale(1);    opacity: .55; }
+  }
+  @keyframes cloudDrift2{
+    0%   { transform: translate(0, 0)          scale(1);    opacity: .45; }
+    25%  { transform: translate(55px, 45px)    scale(1.2);  opacity: .85; }
+    50%  { transform: translate(-60px, 75px)   scale(1.35); opacity: 1;   }
+    75%  { transform: translate(-130px, 25px)  scale(1.1);  opacity: .8;  }
+    100% { transform: translate(0, 0)          scale(1);    opacity: .45; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-glow-wrap::before, .hero-cloud{ animation: none !important; }
+  }
+  /* Shimmer — mismo brillo que recorre "por WhatsApp" en el hero de index.html */
+  .shimmer-word{
+    background: linear-gradient(90deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,1) 45%, rgba(255,255,255,0.55) 90%);
+    background-size: 200% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation: shimmer 5s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+  @media (prefers-reduced-motion: reduce){
+    .shimmer-word{ animation: none !important; -webkit-background-clip:initial;background-clip:initial;color:#fff; }
+  }
+
+  /* Grain — idéntico a index.html/confirmacion.html */
+  .grain{
+    position:absolute;inset:0;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+
+  /* Reveal + fade-in — idéntico a index.html */
+  .reveal{
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  /* rv-soft — stagger sutil de hijos, idéntico al de index.html */
+  [class*="rv-"] > *{
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    transition: opacity .85s cubic-bezier(0.16, 1, 0.3, 1), transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--rv-i, 0) * var(--rv-step, 90ms) + var(--rv-base, 80ms));
+    will-change: opacity, transform;
+  }
+  [class*="rv-"].is-visible > *{ opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal, [class*="rv-"] > *{ opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+  .fade-in{opacity:0;animation:fadeIn .9s ease forwards;}
+  .fade-in.d1{animation-delay:.1s;}
+  .fade-in.d2{animation-delay:.25s;}
+  .fade-in.d3{animation-delay:.4s;}
+  .fade-in.d4{animation-delay:.55s;}
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    .fade-in{ animation: none !important; opacity: 1 !important; }
+  }
+
+  /* LeadConnector iframe — igual que en index.html: sin chrome propio */
+  .cal-embed{
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .cal-embed iframe{
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: 660px !important;
+    min-height: 660px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    color-scheme: normal;
+  }
+  .cal-embed iframe:focus-visible{
+    outline: 2px solid rgba(225,232,220,0.8) !important;
+    outline-offset: 2px;
+  }
+  /* Altura por defecto más chica en mobile: 660px deja un hueco enorme en
+     pantallas chicas/landscape antes de que el postMessage de GHL la ajuste. */
+  @media (max-width: 480px){
+    .cal-embed, .cal-embed iframe{ height: 420px !important; min-height: 420px !important; }
+  }
+
+  /* Scroll progress bar — idéntico a index.html */
+  #scroll-progress-track{
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    background: rgba(255,255,255,0.04); z-index: 9999; pointer-events: none;
+  }
+  #scroll-progress-bar{
+    height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(0);
+    background: linear-gradient(90deg, rgba(225,232,220,0.55) 0%, rgba(225,232,220,0.95) 60%, #ffffff 100%);
+    box-shadow: 0 0 12px rgba(225,232,220,0.35);
+    will-change: transform;
+  }
+
+  /* Stepper de 3 pasos del funnel — es una secuencia real, por eso el número
+     grande estilo Proceso (index.html #proceso). El paso activo se distingue
+     con el borde/relleno claro, no solo con texto. */
+  .step-chip{
+    display:flex; align-items:center; gap:12px; padding:10px 16px 10px 12px;
+    border-radius:999px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.13);
+  }
+  .step-chip .step-n{
+    font-family:'Instrument Serif',serif; font-size:22px; line-height:1;
+    color:rgba(255,255,255,0.6); width:22px; text-align:center;
+  }
+  .step-chip span:last-child{ font-size:13px; color:rgba(255,255,255,0.55); }
+  .step-chip.is-active{
+    background:rgba(225,232,220,0.08); border-color:rgba(225,232,220,0.22);
+  }
+  /* Etiquetas largas de cada paso: el texto extra se oculta en pantallas muy
+     chicas para que el stepper no fuerce siempre 3 filas completas. */
+  @media (max-width: 400px){
+    .step-extra{ display:none; }
+  }
+  .step-chip.is-active .step-n{ color:rgb(225,232,220); }
+  .step-chip.is-active span:last-child{ color:#fff; font-weight:500; }
+
+  /* Nota de privacidad — ícono de candado, no solo texto suelto */
+  .privacy-note{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .privacy-note svg{ flex-shrink:0; opacity:0.55; }
+
+  @media (max-width: 768px){
+    .section-title{ font-size: 32px !important; line-height: 1.08 !important; }
+    .section-eyebrow{ font-size: 10px; }
+    .btn-white:hover{ transform: none !important; }
+    .step-chip{ padding:8px 14px 8px 10px; }
+    .step-chip span:last-child{ font-size:12px; }
+    .panel{ border-radius: 20px; }
+  }
+  @media (max-width: 380px){
+    .section-title{ font-size: 28px !important; }
+  }
+</style>
+</head>
+<body class="page-bg min-h-screen">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M924S8XC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Sin JS, el sistema de reveal-on-scroll dejaría todo el contenido en opacity:0 para siempre. -->
+<noscript><style>.reveal, [class*="rv-"] > *{ opacity:1 !important; transform:none !important; }</style></noscript>
+
+<div id="scroll-progress-track" aria-hidden="true">
+  <div id="scroll-progress-bar"></div>
+</div>
+
+<main class="w-full flex flex-col items-center px-6 pt-10 pb-16">
+  <div class="w-full max-w-[760px] flex flex-col gap-6">
+
+    <a href="https://flujo.com.ar" class="inline-flex items-center self-start p-1 -m-1 transition-transform duration-200 hover:scale-[1.03] fade-in" aria-label="Flujo — Inicio">
+      <img src="brand_assets/Flujo Logo Principal.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="48" class="h-10 w-auto block select-none" draggable="false"/>
+    </a>
+
+    <div class="hero-glow-wrap fade-in d1">
+      <div class="hero-cloud hero-cloud-1" aria-hidden="true"></div>
+      <div class="hero-cloud hero-cloud-2" aria-hidden="true"></div>
+      <div class="relative" style="z-index:1;">
+        <div class="section-eyebrow mb-3">Bienvenido a Flujo</div>
+        <h1 class="section-title max-w-[620px] mb-4">Ya sos parte. <span class="dim">Antes de arrancar,</span> <span class="font-serif italic shimmer-word">contanos de tu negocio.</span></h1>
+        <p class="text-white/60 text-[15px] max-w-[56ch] leading-relaxed">Este es el primer paso: con esta info armamos el plan de automatización de tus primeros 30 días. Te lleva <span class="text-white font-medium">menos de 5 minutos</span>.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3 fade-in d2">
+      <div class="step-chip is-active"><span class="step-n">01</span><span>Onboarding<span class="step-extra"> · estás acá</span></span></div>
+      <div class="step-chip"><span class="step-n">02</span><span>Llamada<span class="step-extra"> de onboarding</span></span></div>
+      <div class="step-chip"><span class="step-n">03</span><span>Arranque<span class="step-extra"> del proyecto</span></span></div>
+    </div>
+
+    <div class="panel p-8 sm:p-10 relative overflow-hidden reveal" style="background:
+      radial-gradient(50% 60% at 50% 20%, rgba(225,232,220,0.14) 0%, rgba(0,0,0,0) 70%),
+      linear-gradient(180deg,#151515,#0a0a0a);">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="section-eyebrow mb-3">Qué pasa después de esto</div>
+      <h2 class="text-white text-[22px] font-semibold tracking-tight mb-5">Así sigue tu proyecto</h2>
+      <ul class="space-y-4 text-white/70 text-[15px] rv-soft">
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Te llega un mail para elegir día y horario de tu llamada de onboarding</li>
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> En esa llamada cerramos el cronograma de tus primeros 30 días — con fechas, no estimaciones sueltas</li>
+        <li class="flex items-start gap-3"><span class="mt-1 text-white" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Arrancamos: días 1 a 3 mapeamos tus flujos manuales y marcamos las 3 automatizaciones prioritarias</li>
+      </ul>
+    </div>
+
+    <div class="panel p-2 sm:p-3 relative overflow-hidden reveal">
+      <div class="relative cal-embed" style="min-height:660px;">
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/survey/HTHeZeXhnoH2MEcJzV9Y"
+          scrolling="no"
+          id="HTHeZeXhnoH2MEcJzV9Y"
+          title="survey"
+          data-cookie-consent="true"
+          data-cookie-consent-provider="auto">
+        </iframe>
+        <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" onerror="document.getElementById('surveyFallback').style.display='block'"></script>
+      </div>
+      <!-- Se muestra si el embed de GHL no carga (bloqueador de anuncios, red, etc.) —
+           sin esto, un embed bloqueado es una caja negra vacía sin salida. -->
+      <div id="surveyFallback" style="display:none" class="text-white/70 text-[14px] leading-relaxed p-6 text-center">
+        No pudimos cargar el formulario — puede ser tu bloqueador de anuncios. No pasa nada: respondé el mail de bienvenida o escribinos por WhatsApp y coordinamos ahí tu llamada de onboarding.
+      </div>
+    </div>
+
+    <p class="privacy-note text-white/60 text-[12px] text-center max-w-[56ch] mx-auto fade-in d4">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.4"/></svg>
+      Usamos esta info solo para preparar tu automatización. No la compartimos con nadie.
+    </p>
+    <p class="text-white/50 text-[12px] text-center max-w-[56ch] mx-auto">Apenas lo mandás, te llega el mail para elegir día y horario de tu llamada de onboarding.</p>
+  </div>
+</main>
+
+<script>
+  /* ============================================================
+     Auto-resize del iframe (LeadConnector / GoHighLevel) — idéntico
+     al listener que usa el calendario en index.html.
+     ============================================================ */
+  (function(){
+    function isAllowedOrigin(origin){
+      try {
+        const h = new URL(origin).hostname;
+        return h === 'leadconnectorhq.com' || h.endsWith('.leadconnectorhq.com') ||
+               h === 'msgsndr.com' || h.endsWith('.msgsndr.com');
+      } catch(_) { return false; }
+    }
+    function parseHeight(d){
+      if (typeof d === 'string' && d.indexOf('[iFrameSizer]') === 0){
+        const parts = d.split(':');
+        if (parts.length >= 2){
+          const h = parseInt(parts[1], 10);
+          if (h > 0) return h;
+        }
+      }
+      if (Array.isArray(d) && d.length >= 2 && d[0] === 'highlevel.setHeight'){
+        const p = d[1];
+        if (p && typeof p.height === 'number') return p.height;
+      }
+      if (d && typeof d === 'object' && !Array.isArray(d)){
+        if (typeof d.height === 'number') return d.height;
+        if (d.size && typeof d.size.height === 'number') return d.size.height;
+        if (d.payload && typeof d.payload.height === 'number') return d.payload.height;
+      }
+      return null;
+    }
+    let gotResize = false;
+    window.addEventListener('message', function(e){
+      if (!e || !isAllowedOrigin(e.origin)) return;
+      const h = parseHeight(e.data);
+      if (!h || h < 200 || h > 3000) return;
+      gotResize = true;
+      const iframe = document.querySelector('.cal-embed iframe');
+      if (!iframe) return;
+      iframe.style.setProperty('height', h + 'px', 'important');
+      iframe.style.setProperty('min-height', h + 'px', 'important');
+      const wrap = iframe.parentElement;
+      if (wrap && wrap.classList.contains('cal-embed')){
+        wrap.style.minHeight = h + 'px';
+      }
+    });
+    // Respaldo si el embed nunca contesta (bloqueado, red caída, etc.) —
+    // `onerror` en el <script> no siempre dispara con los bloqueadores de anuncios.
+    setTimeout(function(){
+      if (gotResize) return;
+      const fb = document.getElementById('surveyFallback');
+      if (fb) fb.style.display = 'block';
+    }, 8000);
+  })();
+
+  /* Scroll progress bar — idéntico al de index.html, pero se detiene al converger
+     (no deja un requestAnimationFrame corriendo para siempre en una pestaña quieta)
+     y no anima si el usuario pidió menos movimiento. */
+  (function(){
+    const bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let target = 0, current = 0, rafId = null;
+    const LERP = 0.18;
+    function calcTarget(){
+      const doc = document.documentElement;
+      const max = (doc.scrollHeight - window.innerHeight) || 1;
+      const y = window.scrollY || doc.scrollTop || 0;
+      target = Math.min(1, Math.max(0, y / max));
+    }
+    function tick(){
+      current += (target - current) * LERP;
+      if (Math.abs(target - current) < 0.0005){
+        current = target;
+        bar.style.transform = `scaleX(${current})`;
+        rafId = null;
+        return;
+      }
+      bar.style.transform = `scaleX(${current})`;
+      rafId = requestAnimationFrame(tick);
+    }
+    function kick(){
+      calcTarget();
+      if (reduceMotion){ bar.style.transform = `scaleX(${target})`; return; }
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    }
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', kick, { passive: true });
+    kick();
+  })();
+
+  /* Scroll reveal — idéntico al de index.html, con soporte rv-soft (stagger de hijos) */
+  (function(){
+    document.querySelectorAll('.rv-soft').forEach(container => {
+      container.style.setProperty('--rv-step', '70ms');
+      Array.from(container.children).forEach((c, i) => c.style.setProperty('--rv-i', i));
+    });
+    if (!('IntersectionObserver' in window)){
+      document.querySelectorAll('.reveal, [class*="rv-"]').forEach(e => e.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, [class*="rv-"]').forEach(el => io.observe(el));
+  })();
+</script>
+</body>
+</html>
