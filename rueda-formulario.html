@@ -76,6 +76,17 @@
 
   .note{font-size:12px;color:var(--faint);margin:16px 0 0;line-height:1.55;}
 
+  .consent-field{margin-top:6px;}
+  .consent-label{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--dim);line-height:1.5;cursor:pointer;}
+  .consent-label input[type="checkbox"]{margin-top:3px;width:16px;height:16px;flex:none;accent-color:var(--white);}
+  .consent-label input[type="checkbox"]:focus-visible{outline:2px solid var(--white);outline-offset:2px;}
+  .consent-label a{color:var(--white);text-decoration:underline;}
+  .consent-label a:hover{color:var(--faint);}
+
+  .legal-foot{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--faint);text-align:center;}
+  .legal-foot a{color:var(--faint);text-decoration:underline;}
+  .legal-foot a:hover{color:var(--white);}
+
   /* Estado de éxito (cuando se usa suelto, fuera de la rueda) */
   .done{display:none;text-align:left;}
   .done.on{display:block;animation:softIn .45s var(--ease) both;}
@@ -139,6 +150,14 @@
         </div>
       </div>
 
+      <div class="field full consent-field">
+        <label class="consent-label" for="fConsent">
+          <input type="checkbox" id="fConsent" name="consentimiento" required aria-required="true" aria-describedby="eConsent" />
+          <span>Acepto la <a href="privacy-policy.html" target="_blank" rel="noopener">Política de Privacidad</a> y que Flujo use mis datos para enviarme el diagnóstico y contactarme.</span>
+        </label>
+        <span class="err" id="eConsent" aria-live="polite"></span>
+      </div>
+
       <button class="submit" type="submit" id="submitBtn">Ver mi diagnóstico →</button>
       <p class="note">Usamos tus datos solo para mandarte el diagnóstico y contactarte. No los compartimos con nadie.</p>
     </form>
@@ -149,6 +168,10 @@
     <h2>Recibimos tus datos. <span class="t-acc">Te escribimos en breve.</span></h2>
     <p id="doneMsg">Ya podés reservar tu auditoría gratuita de 30 minutos y llevarte los 3 números de tu operación.</p>
     <a class="cta" id="doneCta" href="https://api.leadconnectorhq.com/widget/booking/h17RRgAL8FEfAfenOwFW" target="_blank" rel="noopener">Reservar mi auditoría →</a>
+  </div>
+
+  <div class="legal-foot" id="legalFoot">
+    <a href="privacy-policy.html">Privacidad</a> · <a href="terms.html">Términos</a> · <a href="cookie-policy.html">Cookies</a>
   </div>
 
 </div>
@@ -193,6 +216,13 @@
   // ¿Estamos embebidos dentro de otra página (la rueda)?
   var embedded = (function(){ try { return window.parent && window.parent !== window; } catch(e){ return false; } })();
 
+  // El pie legal solo tiene sentido cuando el form se ve suelto:
+  // embebido en la rueda, esa página ya trae su propio footer con los links.
+  if(/[?&]bare=1(&|$)/.test(window.location.search) || embedded){
+    var legalFoot = $("legalFoot");
+    if(legalFoot) legalFoot.style.display = "none";
+  }
+
   // ---- Reportar altura al contenedor para que el iframe se ajuste solo ----
   function reportHeight(){
     if(!embedded) return;
@@ -220,7 +250,9 @@
       nombre:   $("fNombre").value.trim(),
       apellido: $("fApellido").value.trim(),
       email:    $("fEmail").value.trim(),
-      telefono: $("fTel").value.trim()
+      telefono: $("fTel").value.trim(),
+      consentimiento: $("fConsent").checked,
+      consentimiento_ts: new Date().toISOString()
     };
   }
 
@@ -245,6 +277,7 @@
     ok = setErr("fApellido","eApellido",d.apellido.length < 2 ? "Escribí tu apellido" : "") && ok;
     ok = setErr("fEmail","eEmail",     !validEmail(d.email) ? "Escribí un email válido" : "") && ok;
     ok = setErr("fTel","eTel", d.telefono.replace(/\D/g,"").length < 8 ? "Escribí un número válido" : "") && ok;
+    ok = setErr("fConsent","eConsent", !d.consentimiento ? "Necesitamos tu aceptación para continuar" : "") && ok;
 
     if(!ok){
       var first = form.querySelector('[aria-invalid="true"]');
@@ -276,7 +309,7 @@
   });
 
   // Limpia el error del campo apenas lo corrigen
-  ["fNombre","fApellido","fEmail","fTel"].forEach(function(id){
+  ["fNombre","fApellido","fEmail","fTel","fConsent"].forEach(function(id){
     $(id).addEventListener("input", function(){
       if(this.getAttribute("aria-invalid")){
         this.removeAttribute("aria-invalid");

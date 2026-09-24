@@ -23,11 +23,11 @@
 <meta property="og:url" content="https://flujo.com.ar/rueda-operaciones" />
 <meta property="og:title" content="Rueda de Operaciones — ¿Cuánto de tu negocio sigue funcionando a mano?" />
 <meta property="og:description" content="Puntuá tu operación, mirá el dibujo de tu negocio y descubrí qué te está costando trabajar a mano. Gratis, en 3 minutos." />
-<meta property="og:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
+<meta property="og:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Rueda de Operaciones — Flujo" />
 <meta name="twitter:description" content="Puntuá tu operación y descubrí qué te está costando trabajar a mano. Gratis, en 3 minutos." />
-<meta name="twitter:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.png" />
+<meta name="twitter:image" content="https://flujo.com.ar/brand_assets/Flujo%20Logo%20App@4x.jpg" />
 
 <!-- Structured Data: WebApplication (misma línea que los bloques de index.html) -->
 <script type="application/ld+json">
@@ -45,13 +45,9 @@
 }
 </script>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M924S8XC');</script>
-<!-- End Google Tag Manager -->
+<!-- Google Tag Manager: se carga desde cookie-consent.js -->
+<script>window.dataLayer = window.dataLayer || [];</script>
+<script src="cookie-consent.js" defer></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -206,6 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   svg.wheel{width:100%;height:auto;display:block;overflow:visible;}
   .wedge{cursor:pointer;stroke:#0a0a0a;stroke-width:2;transition:opacity .15s ease;}
   .wedge.hl{stroke:#ffffff;stroke-width:2.4;}
+  .wedge:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .wg{stroke:rgba(255,255,255,0.07);}
   .wg-out{stroke:rgba(255,255,255,0.14);}
   .wl{fill:rgba(255,255,255,0.5);font-size:11.5px;font-weight:400;}
@@ -426,6 +423,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .foot-link:hover{color:var(--accent);text-decoration:underline;}
   .foot-link:focus-visible{outline:2px solid var(--accent-dim);outline-offset:3px;border-radius:4px;}
   .foot-note{font-size:12px;color:var(--ink-faint);margin:20px 0 0;line-height:1.6;text-align:center;}
+  .foot-legal{font-size:12px;color:var(--ink-faint);margin-top:18px;text-align:center;}
+  .foot-legal a, .foot-legal-btn{color:var(--ink-faint);text-decoration:underline;background:none;border:none;padding:0;font:inherit;cursor:pointer;}
+  .foot-legal a:hover, .foot-legal-btn:hover{color:var(--ink);}
+  .foot-legal a:focus-visible, .foot-legal-btn:focus-visible{outline:2px solid var(--accent-dim);outline-offset:2px;}
 
   /* ---------- Responsive ---------- */
   @media (max-width:900px){
@@ -500,18 +501,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M924S8XC"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<!-- GTM noscript fallback removido a propósito: GTM ahora depende del consentimiento de cookies. -->
 
 <div class="app">
 
   <header class="topbar">
     <div>
       <a class="brandmark" href="/" aria-label="Flujo — Inicio">
-        <img class="logo-screen" src="brand_assets/Flujo Logo Principal.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="44" draggable="false" />
-        <img class="logo-print" src="brand_assets/Flujo Logo Invertido.svg" alt="" aria-hidden="true" width="140" height="44" draggable="false" />
+        <img class="logo-screen" src="brand_assets/Flujo Logo Invertido.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="44" draggable="false" />
+        <img class="logo-print" src="brand_assets/Flujo Logo Principal.svg" alt="" aria-hidden="true" width="140" height="44" draggable="false" />
       </a>
       <p class="eyebrow">Herramienta gratuita</p>
       <h1>Tu negocio corre solo <span class="t-dim">en el papel.</span><br><span class="t-acc">¿Y en la práctica?</span></h1>
@@ -702,8 +700,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer>
     <div class="panel foot-inner">
       <div>
-        <img class="logo-screen" src="brand_assets/Flujo Logo Principal.svg" alt="Flujo" width="140" height="42" draggable="false" />
-        <img class="logo-print" src="brand_assets/Flujo Logo Invertido.svg" alt="" aria-hidden="true" width="140" height="42" draggable="false" />
+        <img class="logo-screen" src="brand_assets/Flujo Logo Invertido.svg" alt="Flujo" width="140" height="42" draggable="false" />
+        <img class="logo-print" src="brand_assets/Flujo Logo Principal.svg" alt="" aria-hidden="true" width="140" height="42" draggable="false" />
         <p class="foot-tag">Automatizamos tu operación digital para que vuelvas a hacer lo único que no se puede automatizar: tu contenido y tus clientes.</p>
         <p class="foot-meta">Buenos Aires · LATAM · español</p>
       </div>
@@ -711,6 +709,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="foot-link" href="/">← Volver a flujo.com.ar</a>
         <span class="foot-meta" style="margin:0;">© <span id="y"></span> Flujo</span>
       </div>
+    </div>
+    <div class="foot-legal">
+      <a href="privacy-policy.html">Privacidad</a> ·
+      <a href="terms.html">Términos y Condiciones</a> ·
+      <a href="cookie-policy.html">Cookies</a> ·
+      <a href="refund-policy.html">Garantía y Reembolsos</a>
     </div>
     <p class="foot-note">Tu rueda vive solo en esta pantalla — si cerrás o recargás, se borra. Imprimí o guardá en PDF para conservarla.</p>
   </footer>
@@ -858,7 +862,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // gajos con el valor real
     state.areas.forEach(function(area,i){
       var a0=first+i*step, a1=a0+step, rv=R*area.score/10;
-      svg += '<path id="wedge-'+i+'" class="wedge" data-i="'+i+'" d="'+wedgePath(rv,a0,a1)+'" fill="'+seg(i).c+'" opacity="0.9"/>';
+      svg += '<path id="wedge-'+i+'" class="wedge" data-i="'+i+'" tabindex="0" role="button" aria-label="'+esc(area.name)+': '+area.score+' de 10. Enter para editar." d="'+wedgePath(rv,a0,a1)+'" fill="'+seg(i).c+'" opacity="0.9"/>';
     });
     // números
     state.areas.forEach(function(area,i){
@@ -889,6 +893,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       w.addEventListener("mouseenter", function(){ highlightRow(i,true); });
       w.addEventListener("mouseleave", function(){ highlightRow(i,false); });
       w.addEventListener("click", function(){ focusRow(i); });
+      w.addEventListener("focus", function(){ highlightRow(i,true); });
+      w.addEventListener("blur", function(){ highlightRow(i,false); });
+      w.addEventListener("keydown", function(ev){
+        if(ev.key === "Enter" || ev.key === " " || ev.key === "Spacebar"){
+          ev.preventDefault();
+          focusRow(i);
+        }
+      });
     });
   }
 

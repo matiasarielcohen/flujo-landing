@@ -1,7 +1,8 @@
 # STATE — flujo-landing
 
-## 2026-09-18 — Ported hero glow, shimmer, accent panels to funnel pages
+## 2026-09-23 — Cleared dead placeholders, confirmed GHL redirect done
 
-onboarding.html and confirmacion.html now carry index.html's animated hero glow (drifting clouds, breathing radial, shimmer text) and an accent-colored flagship panel, on top of the earlier grey/panel-texture pass. All 4 shared-design-system files (index, onboarding, confirmacion, rueda-operaciones) are visually verified via puppeteer, no overflow issues.
-- **Next:** Mati reviews in browser, then decide whether to commit (still nothing committed — carries forward the prior uncommitted Tailwind-migration/WhatsApp-data open items too).
-Detail: [log/2026-09-18-ported-hero-glow-shimmer-accent-panels-to-funnel.md](log/2026-09-18-ported-hero-glow-shimmer-accent-panels-to-funnel.md)
+Ran a full audit of flujo-landing for anything not-final (placeholders, empty configs, stale comments) and cleared what could be cleared: dead chat-widget/WhatsApp placeholder comments removed from index.html; onboarding.html's GHL redirect dependency confirmed configured by Mati (no longer open).
+- **Still open (real, not code-fixable by me):** `[COMPLETAR: ...]` business identity (razón social/CUIT/domicilio/email) + refund claim-window days across privacy-policy.html/terms.html/refund-policy.html/cookie-policy.html — waiting on business formalization. `rueda-operaciones.html` CONFIG.leadWebhook is empty (leads go nowhere) and CONFIG.formSrc still uses the GHL widget instead of the local consent-checkbox form (rueda-formulario.html, whose own CONFIG.webhook is also empty) — Mati's call, tracked as the long-standing blocking question. confirmacion.html CONFIG.videoUrl is empty (shows "Video en camino" placeholder).
+- **Next:** whenever Mati has the business formalized, fill the COMPLETAR spans; separately decide the rueda-operaciones formSrc/webhook question.
+Detail: none — small cleanup, no separate log file needed.

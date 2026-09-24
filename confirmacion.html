@@ -12,16 +12,11 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
 
-<!-- Google Tag Manager — mismo container que index.html: esta es la página de
-     conversión del funnel (reserva confirmada), no puede quedar sin tracking. -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M924S8XC');</script>
-<!-- End Google Tag Manager -->
+<!-- Google Tag Manager — mismo container que index.html, se carga desde cookie-consent.js. -->
+<script>window.dataLayer = window.dataLayer || [];</script>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="cookie-consent.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -50,7 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     position:absolute;inset:0;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.6'/></svg>");
   }
-  .dim{color:rgba(255,255,255,0.45);}
+  .dim{color:rgba(255,255,255,0.6);}
   .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);font-size:12px;color:rgba(255,255,255,0.7);}
   .section-title{font-size:56px;line-height:1.05;letter-spacing:-0.035em;font-weight:600;color:#fff;}
   .section-eyebrow{text-transform:uppercase;letter-spacing:0.18em;font-size:11px;color:rgba(255,255,255,0.6);}
@@ -244,10 +239,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </style>
 </head>
 <body class="page-bg min-h-screen">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M924S8XC"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<!-- GTM noscript fallback removido a propósito: GTM ahora depende del consentimiento de cookies. -->
 <!-- Sin JS, el sistema de reveal-on-scroll dejaría todo el contenido en opacity:0 para siempre. -->
 <noscript><style>.reveal, [class*="rv-"] > *{ opacity:1 !important; transform:none !important; }</style></noscript>
 
@@ -259,7 +251,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="w-full max-w-[760px] flex flex-col gap-6">
 
     <a href="https://flujo.com.ar" class="inline-flex items-center self-start p-1 -m-1 transition-transform duration-200 hover:scale-[1.03] fade-in" aria-label="Flujo — Inicio">
-      <img src="brand_assets/Flujo Logo Principal.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="48" class="h-10 w-auto block select-none" draggable="false"/>
+      <img src="brand_assets/Flujo Logo Invertido.svg" alt="Flujo — Automatización de negocios digitales" width="140" height="48" class="h-10 w-auto block select-none" draggable="false"/>
     </a>
 
     <div class="hero-glow-wrap fade-in d1">
@@ -377,6 +369,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </main>
 
+<footer class="w-full flex flex-col items-center px-6 pb-10">
+  <div class="w-full max-w-[760px] pt-6 border-t border-white/10 flex flex-col items-center gap-2 text-center">
+    <div class="flex flex-wrap justify-center gap-x-4 gap-y-1 text-[12px]">
+      <a href="privacy-policy.html" class="text-white/55 hover:text-white underline">Privacidad</a>
+      <a href="terms.html" class="text-white/55 hover:text-white underline">Términos y Condiciones</a>
+      <a href="cookie-policy.html" class="text-white/55 hover:text-white underline">Cookies</a>
+      <a href="refund-policy.html" class="text-white/55 hover:text-white underline">Garantía y Reembolsos</a>
+    </div>
+    <p class="text-white/35 text-[11px]">© <span id="y2"></span> Flujo</p>
+  </div>
+</footer>
+
+<script>document.getElementById('y2').textContent = new Date().getFullYear();</script>
 <script>
   /* Scroll progress bar — idéntico al de index.html, pero se detiene al converger
      y no anima si el usuario pidió menos movimiento. */
